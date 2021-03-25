@@ -56,9 +56,10 @@ app.controller('teamCtrl', function($scope, filterFilter,$http) {
     
     _loadDataTeam();
     function _loadDataTeam() {
+    debugger;
         $http({
             method: 'GET',
-            url: '/EmployeeManager/api/user'
+            url: '/EmployeeManager/api/team'
         }).then(
             function(res) { // success
                 $scope.users = res.data;

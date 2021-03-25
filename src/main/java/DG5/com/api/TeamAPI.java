@@ -8,19 +8,23 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import DG5.com.DTO.UserDTO;
-import DG5.com.service.IUserService;
+import DG5.com.DTO.TeamDTO;
+import DG5.com.service.ITeamService;
 
 @RestController
-@RequestMapping(value = "/api/user")
-public class UserAPI {
-
+@RequestMapping(value = "/api/team")
+public class TeamAPI {
+	
 	@Autowired
-	private IUserService iuserservice;
+	private ITeamService iteamservice;
 	
 	@GetMapping
-    public List<UserDTO> getEmployees() {  	
-        return iuserservice.findAll();
-    }
+	public List<TeamDTO> getlistteam() {
+		return iteamservice.findAll();
+	}
 	
+	@PostMapping
+	public void insertteam() {
+			iteamservice.findAll();
+	}
 }
