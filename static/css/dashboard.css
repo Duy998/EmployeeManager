@@ -1,10 +1,10 @@
 /* response dashboard0 */
 
-@media ( min-width: 840px) {
+@media ( min-width: 910px) {
     /* Sidebar */
     .navbars {
         width: 20%;
-        position: absolute;
+        position: fixed;
         top: 0;
         bottom: 0;
         left: 0;
@@ -16,9 +16,14 @@
         margin-left: 20%;
     }
     .navbars__main {
+        width: 80%;
+        position: fixed;
         display: flex;
         justify-content: flex-end;
         align-items: center;
+    }
+    .dashboard__main .main {
+        margin: 5em 1em 4em 1em;
     }
     .navbars__menu__open,
     .navbars__menu__close {
@@ -30,20 +35,21 @@
     }
 }
 
-@media ( max-width: 840px) {
+@media ( max-width: 910px) {
     /* Sidebar */
     .navbars__header {
         padding: 1em;
     }
     .navbars {
         width: 0%;
-        position: absolute;
+        position: fixed;
         overflow: hidden;
         top: 0;
         bottom: 0;
         left: 0;
         background: #4e73df;
-        z-index: 1;
+        box-shadow: 0px 0px 10px #000000a8;
+        z-index: 99999;
     }
     .navbars__header__img {
         margin-top: 1em;
@@ -52,11 +58,18 @@
     .dashboard__main {
         width: 100%;
         margin: 0;
+        /* background: #3a3b3c59; */
+    }
+    .dashboard__main .main {
+        margin: 5em 1em 5em 1em;
     }
     .navbars__main {
+        position: fixed;
+        width: 100%;
         display: flex;
         align-items: center;
         justify-content: space-between;
+        z-index: 1;
     }
     .navbars__menu__open {
         cursor: pointer;
@@ -69,8 +82,8 @@
     .navbars__menu__close {
         cursor: pointer;
         position: absolute;
-        right: 3%;
-        top: 1%;
+        right: 5%;
+        top: 2%;
         padding: 7px 13px;
         color: #4e73df;
         background: white;
@@ -82,7 +95,9 @@
     }
     /* Footer */
     .footer {
+        position: fixed;
         width: 100%;
+        box-shadow: 0px 0px 5px #908f8f9e;
     }
 }
 
@@ -90,7 +105,8 @@
 /* CSS Body */
 
 body {
-    background: #777c842e;
+    background: #3a3b3c59;
+    height: auto;
 }
 
 .dashboard {
@@ -111,6 +127,7 @@ body {
     font-weight: bolder;
     text-transform: uppercase;
     color: white;
+    white-space: nowrap;
 }
 
 .navbars__body {
@@ -130,6 +147,11 @@ body {
     font-size: 15px;
     color: white;
     border-bottom: 1px solid #e2e2e221;
+    white-space: nowrap;
+}
+
+.navbars__body ul li a:focus {
+    outline: none;
 }
 
 .navbars__body ul li .logout__dashboard {
@@ -160,7 +182,6 @@ body {
 .dashboard__main .main {
     background: white;
     padding: 2em;
-    margin: 2em;
     border-radius: 5px;
 }
 
@@ -171,8 +192,10 @@ body {
     text-align: center;
     background: white;
     right: 0;
+    box-shadow: 0px 0px 5px #908f8f9e;
 }
 
 .footer .footer__title {
     font-size: 14px;
+    color: slategrey;
 }
