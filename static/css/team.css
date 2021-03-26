@@ -1,0 +1,96 @@
+.main__app {
+    font-family: 'poppins', sans-serif;
+}
+
+table,
+th,
+td {
+    border: 1px solid grey;
+    border-collapse: collapse;
+}
+
+table tbody .childTeam {
+    cursor: pointer;
+}
+
+.listteam__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2em;
+}
+
+.listteam__header__icon {
+    display: flex;
+}
+
+.listteam__header__icon button {
+    border: none;
+    color: cornflowerblue;
+    background: none;
+}
+
+.listteam__header__icon button:focus {
+    outline: none;
+}
+
+.listteam__header__icon a {
+    text-decoration: none;
+    display: block;
+    padding: 5px 10px;
+}
+
+.listteam__header__icon a:nth-child(1) {
+    color: red;
+}
+
+.listteam__header__icon a:nth-child(2) {
+    color: dodgerblue;
+}
+
+.listteam__header__name {
+    display: block;
+    width: 10rem;
+}
+
+.listteam__header__search {
+    width: 50%;
+    position: relative;
+}
+
+.listteam__header__search input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid;
+    font-size: 14px;
+}
+
+.listteam__header__search input:focus {
+    outline: none;
+}
+
+.icon__search {
+    position: absolute;
+    right: 0%;
+    color: black;
+    padding: 9px 15px;
+}
+
+.listteam__khung {
+    width: 20rem;
+    height: 20rem;
+}
+
+.listteam__khung__img {
+    height: 10rem;
+    width: 10rem;
+}
+
+.listteam__khung__name {
+    text-align: center;
+    line-height: 35px;
+}
+
+.listteam__body .col-sm-4 {
+    height: fit-content;
+}
