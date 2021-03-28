@@ -1,0 +1,17 @@
+<h4>Login in</h4>
+<form action="" method="">
+    <label>Email</label>
+    <input type="email" name="email" required>
+    <label>Password</label>
+    <div class="form__hide">
+        <input type="{{inputType}}" name="password" required>
+        <div class="form__icon" ng-click="hideShow()" ng-bind-html="icon"></div>
+    </div>
+    <input type="submit" value="Login in">
+</form>
+<div class="form__forgot text-center">
+    <a href="#" ng-click="loadIndex(1)">Forgot password ?</a>
+</div>
+<div class="form__create text-center">
+    <a href="#" ng-click="loadIndex(2)">Create new password ?</a>
+</div>

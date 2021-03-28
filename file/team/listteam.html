@@ -1,0 +1,54 @@
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+                <td style="width: 5%;">
+                    <input type="checkbox" id="check_all" ng-click="checkAll()" value="" />
+                </td>
+                <td ng-click="sortType = 'name'; sortReverse = !sortReverse">  
+                        Name            
+                        <span ng-show="sortType == 'name' && !sortReverse" class="fa fa-caret-down"></span>
+                        <span ng-show="sortType == 'name' && sortReverse" class="fa fa-caret-up"></span>
+                </td>
+                <td ng-click="sortType = 'ex'; sortReverse = !sortReverse">
+                        Age
+                        <span ng-show="sortType == 'ex' && !sortReverse" class="fa fa-caret-down"></span>
+                        <span ng-show="sortType == 'ex' && sortReverse" class="fa fa-caret-up"></span>
+                    </p>
+                </td>
+                <td ng-click="sortType = 'position'; sortReverse = !sortReverse">
+                        NickName
+                        <span ng-show="sortType == 'position' && !sortReverse" class="fa fa-caret-down"></span>
+                        <span ng-show="sortType == 'position' && sortReverse" class="fa fa-caret-up"></span>
+                </td>
+                <td>
+                    edit
+                </td>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr class="childTeam" ng-click="choseTeamEvent(x.name)" ng-repeat="x in students | orderBy:sortType:sortReverse | filter:search">
+                <td><input type="checkbox" name="name[]" id="check_all" value="" /></td>
+                <td>{{ x.name }}</td>
+                <td>{{ x.ex }}</td>
+                <td>{{ x.position}}</td>
+                <td><button ng-click="_refreshEmployeeData('{{x.name}}')"></button></td>
+            </tr>
+        </tbody>
+    </table>
+    <ul class="pagination" id="pagination"></ul>
+</div>
+<script type="text/javascript">
+    $(function () {
+        window.pagObj = $('#pagination').twbsPagination({
+            totalPages: 35,
+            visiblePages: 5,
+            onPageClick: function (event, page) {
+                console.info(page + ' (from options)');
+            }
+        }).on('page', function (event, page) {
+            console.info(page + ' (from event listening)');
+        });
+    });
+</script>
