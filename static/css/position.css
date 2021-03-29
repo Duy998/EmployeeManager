@@ -1,0 +1,17 @@
+.listPosition select{
+    width: 250px;
+    height: 35px;
+    margin: 9px 0px 0px 142px;
+}
+.listPosition .position_trash_square_circle {
+    padding: 0px 14px;
+    position: absolute;
+    left: 600px;
+    margin: 7px 4px -23px 3px;
+}
+.listPosition a .fa-pen-square{
+    margin: 10px;
+}
+.listPosition{
+    margin-top: 44px;
+}

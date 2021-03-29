@@ -1,2 +1,76 @@
-<h1>List Position</h1>
-<label>{{msg}}</label>
+<div>
+    <div class="listPosition">
+        <form>
+            <div class="form-group">
+                <div class="input-group">
+                    <h4><a href="indexs.html">List Position</a></h4>
+                    <select>
+                        <option ng-repeat="item in position" value="item.id">{{item.names}}</option>
+                    </select>
+                    <div class="position_trash_square_circle">
+                        <a href="#"><i class="fa fa-trash"></i></a>
+                        <a href="#"><i class="fas fa-pen-square"></i></a>
+                        <a href="file/position/addposition.html"><i class="fa fa-plus-circle" aria-hidden="true"></i></a>
+                        <br><br>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div>
+        <table class="table table-hover text-center">
+            <thead>
+                <tr>
+                    <td>
+                        <input type='checkbox' ng-click="checkPosition()" value='' />
+                    </td>
+                    <td>
+                        <p href="#" ng-click="sortType = 'name'; sortReverse = !sortReverse">
+                            Name Employee
+                            <span ng-show="sortType == 'name' && !sortReverse" class="fa fa-caret-down"></span>
+                            <span ng-show="sortType == 'name' && sortReverse" class="fa fa-caret-up"></span>
+                        </p>
+                    </td>
+                    <td>
+                        <p href="#" ng-click="sortType = 'age'; sortReverse = !sortReverse">
+                            Age
+                            <span ng-show="sortType == 'age' && !sortReverse" class="fa fa-caret-down"></span>
+                            <span ng-show="sortType == 'age' && sortReverse" class="fa fa-caret-up"></span>
+                        </p>
+                    </td>
+                    <td>
+                        <p href="#" ng-click="sortType = 'nickname'; sortReverse = !sortReverse">
+                            NickName
+                            <span ng-show="sortType == 'nickname' && !sortReverse" class="fa fa-caret-down"></span>
+                            <span ng-show="sortType == 'nickname' && sortReverse" class="fa fa-caret-up"></span>
+                        </p>
+                    </td>
+                    <td>
+                        <p href="#" ng-click="sortType = 'position'; sortReverse = !sortReverse">
+                            Position
+                            <span ng-show="sortType == 'position' && !sortReverse" class="fa fa-caret-down"></span>
+                            <span ng-show="sortType == 'position' && sortReverse" class="fa fa-caret-up"></span>
+                        </p>
+                    </td>
+                    <td class="sex">
+                        Sex(Male)
+                    </td>
+                    <td class="status">
+                        Status
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-click="choseTeamEvent(x.name)" ng-repeat="x in students | orderBy:sortType:sortReverse | filter:search">
+                    <td><input type='checkbox' name='name[]' id='check_all' value='' /></td>
+                    <td><a href="#">{{ x.name }}</a></td>
+                    <td>{{ x.age }}</td>
+                    <td>{{ x.nickname}}</td>
+                    <td>{{ x.position}}</td>
+                    <td><input type='checkbox' name='' id='' value='' /></td>
+                    <td><input type='checkbox' name='' id='' value='' /></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    </div>
