@@ -9,6 +9,10 @@ td {
     border-collapse: collapse;
 }
 
+table tbody .childTeam {
+    cursor: pointer;
+}
+
 .listteam__header {
     display: flex;
     align-items: center;
