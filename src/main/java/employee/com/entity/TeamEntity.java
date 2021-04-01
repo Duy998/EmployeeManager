@@ -15,6 +15,8 @@ public class TeamEntity extends BaseEntity{
 	@Column
 	private String name;
 	
+	@Column(name = "namemanager")
+	private String nameManager;
 	@Column
 	private Integer number;
 	
@@ -39,6 +41,23 @@ public class TeamEntity extends BaseEntity{
 	public void setNumber(Integer number) {
 		this.number = number;
 	}
+
+	public String getNameManager() {
+		return nameManager;
+	}
+
+	public void setNameManager(String nameManager) {
+		this.nameManager = nameManager;
+	}
+
+	public List<UserEntity> getUsers() {
+		return users;
+	}
+
+	public void setUsers(List<UserEntity> users) {
+		this.users = users;
+	}
+	
 	
 	
 	

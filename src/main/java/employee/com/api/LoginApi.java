@@ -17,7 +17,7 @@ public class LoginApi {
 	
 	@RequestMapping(value = "/api/login", method = RequestMethod.POST)
 	public UserDTO login(@RequestBody UserDTO userDto){
-		userDto = loginService.loginPage(userDto.getEmail(), userDto.getPassword());
+		userDto = loginService.loginPage(userDto.geteMail(), userDto.getPassWord());
 		return userDto;
 	}
 }

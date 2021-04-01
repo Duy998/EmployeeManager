@@ -119,4 +119,37 @@ public class UserEntity extends BaseEntity {
 		this.password = password;
 	}
 
+	public PositionEntity getPosition() {
+		return position;
+	}
+
+	public void setPosition(PositionEntity position) {
+		this.position = position;
+	}
+
+	public TeamEntity getTeam() {
+		return team;
+	}
+
+	public void setTeam(TeamEntity team) {
+		this.team = team;
+	}
+
+	public List<TechnicalEntity> getTechnicals() {
+		return technicals;
+	}
+
+	public void setTechnicals(List<TechnicalEntity> technicals) {
+		this.technicals = technicals;
+	}
+
+	public List<AdvantageEntity> getAdvantages() {
+		return advantages;
+	}
+
+	public void setAdvantages(List<AdvantageEntity> advantages) {
+		this.advantages = advantages;
+	}
+
+	
 }

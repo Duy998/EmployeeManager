@@ -2,10 +2,12 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>employee.com</groupId>
-	<artifactId>EmployeeManager</artifactId>
+	<groupId>com.duy</groupId>
+	<artifactId>DoAn</artifactId>
 	<version>1.0</version>
 	<packaging>war</packaging>
+
+
 	<properties>
 		<servlet.api.version>3.1.0</servlet.api.version>
 		<springframework.version>4.3.13.RELEASE</springframework.version>
@@ -14,12 +16,18 @@
 		<jstl.version>1.2</jstl.version>
 		<hibernate.version>4.3.6.Final</hibernate.version>
 		<spring.data>1.11.5.RELEASE</spring.data>
-		<mysql.version>8.0.23</mysql.version>
+		<mysql.version>8.0.13</mysql.version>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 	</properties>
 
 	<dependencies>
+		<!-- https://mvnrepository.com/artifact/log4j/log4j -->
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.17</version>
+		</dependency>
 
 		<!-- Spring -->
 		<dependency>
@@ -168,13 +176,13 @@
 			<version>1.9.13</version>
 		</dependency>
 		<!--end json -->
-
-		<!-- Logger -->
+		<!-- https://mvnrepository.com/artifact/opensymphony/sitemesh -->
 		<dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
-			<version>1.2.17</version>
+			<groupId>opensymphony</groupId>
+			<artifactId>sitemesh</artifactId>
+			<version>2.4.2</version>
 		</dependency>
+
 
 	</dependencies>
 

@@ -23,10 +23,10 @@ public class LoginService implements ILoginService {
 		UserEntity userEntity = loginRepository.findByEmailAndPassword(email, password);
 		UserDTO userDto = new UserDTO();
 		if(userEntity != null && userEntity.getStatus() == 1) {
-			userDto = userConverter.userConverter(userEntity);
-			userDto.setMessage("true");
+			userDto = userConverter.todto(userEntity);
+			userDto.setMessger("true");
 		}else {
-			userDto.setMessage("false");
+			userDto.setMessger("false");
 		}
 		return userDto;
 	}

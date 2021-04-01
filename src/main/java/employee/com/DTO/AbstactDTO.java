@@ -6,6 +6,7 @@ import java.util.List;
 public abstract class AbstactDTO<T> {
 
 	private Long id;
+	private Long[] ids;
 	private List<T> listresult = new ArrayList<T>();
 	public Long getId() {
 		return id;
@@ -19,6 +20,13 @@ public abstract class AbstactDTO<T> {
 	public void setListresult(List<T> listresult) {
 		this.listresult = listresult;
 	}
+	public Long[] getIds() {
+		return ids;
+	}
+	public void setIds(Long[] ids) {
+		this.ids = ids;
+	}
+	
 	
 	
 }

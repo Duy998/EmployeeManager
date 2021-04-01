@@ -7,13 +7,29 @@ public class UserDTO extends AbstactDTO<UserDTO>{
 	private String nickName;	
 	private String age;	
 	private String dayStart;	
-	private String profile;	
+	private String proFile;	
 	private Integer status;
-	private String email;
-	private String password;
-	private String message;
+	private String eMail;
+	private String posiTion;
+	private String team;
+	private String messger;
+	private String passWord;
+	private String checked;
 	
 	
+	
+	public String getPassWord() {
+		return passWord;
+	}
+	public void setPassWord(String passWord) {
+		this.passWord = passWord;
+	}
+	public String getMessger() {
+		return messger;
+	}
+	public void setMessger(String messger) {
+		this.messger = messger;
+	}
 	public String getName() {
 		return name;
 	}
@@ -38,35 +54,48 @@ public class UserDTO extends AbstactDTO<UserDTO>{
 	public void setDayStart(String dayStart) {
 		this.dayStart = dayStart;
 	}
-	public String getProfile() {
-		return profile;
+	public String getProFile() {
+		return proFile;
 	}
-	public void setProfile(String profile) {
-		this.profile = profile;
+	public void setProFile(String proFile) {
+		this.proFile = proFile;
 	}
+	
 	public Integer getStatus() {
 		return status;
 	}
 	public void setStatus(Integer status) {
 		this.status = status;
 	}
-	public String getEmail() {
-		return email;
+	public String geteMail() {
+		return eMail;
 	}
-	public void setEmail(String email) {
-		this.email = email;
+	public void seteMail(String eMail) {
+		this.eMail = eMail;
 	}
-	public String getPassword() {
-		return password;
+	public String getPosiTion() {
+		return posiTion;
 	}
-	public void setPassword(String password) {
-		this.password = password;
+	public void setPosiTion(String posiTion) {
+		this.posiTion = posiTion;
 	}
-	public String getMessage() {
-		return message;
+	public String getTeam() {
+		return team;
 	}
-	public void setMessage(String message) {
-		this.message = message;
+	public void setTeam(String team) {
+		this.team = team;
 	}
+	public String getChecked() {
+		return checked;
+	}
+	public void setChecked(String checked) {
+		this.checked = checked;
+	}
+	
+	
+	
+	
+	
+	
 	
 }

@@ -24,11 +24,11 @@ angular.module('loginApp', ['ngSanitize', 'ngMaterial']).controller('loginCtrl',
 		login.password = password;
 		$http({
 			method: "POST",
-			url: "http://localhost:8080/EmployeeManager/api/login",
+			url: "http://localhost:8080/DoAn/api/login",
 			data: JSON.stringify(login)
 		}).then(function (response) {
 			if(response.data.message == "true"){
-				location.href="http://localhost:8080/EmployeeManager/home";
+				location.href="http://localhost:8080/DoAn/home";
 				sessionStorage.setItem("user",JSON.stringify(response.data));
 				$scope.error = true;
 			}else{

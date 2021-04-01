@@ -13,7 +13,7 @@ app.controller('appCtrl', function($scope) {
     // Event open and close modal responsive
     $scope.openModal = openModalEvent;
     $scope.closeModal = closeModalEvent;
-    $scope.dataUser = JSON.parse(sessionStorage.user);
+    /*$scope.dataUser = JSON.parse(sessionStorage.user);*/
 
 });
 
@@ -22,7 +22,7 @@ app.config(function($routeProvider) {
         templateUrl: 'file/employee/listemployee.html',
         controller: 'employeeCtrl'
     }).when('/team', {
-        templateUrl: 'file/team/default.html',
+        templateUrl: 'file/team/indexTeam.jsp',
         controller: 'teamCtrl'
     }).when('/position', {
         templateUrl: 'file/position/listposition.html',
