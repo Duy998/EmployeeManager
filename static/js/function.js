@@ -1,5 +1,39 @@
 // Custom function.
 
+let listItem = document.getElementsByClassName("navItem");
+for (let i = 0; i < listItem.length; i++) {
+    let index = i;
+    listItem[i].addEventListener("click", function() {
+        for (var j = 0; j < listItem.length; j++) {
+            listItem[j].classList.remove("currentNavItem");
+        }
+        listItem[index].classList.add("currentNavItem");
+    });
+}
+
+function openModalEvent() {
+    console.log(window.screen.width);
+    let _width = window.screen.width;
+    if (_width > 580) {
+        $('.navbars').css({
+            'width': '45%',
+            'transition': '.5s'
+        });
+    } else {
+        $('.navbars').css({
+            'width': '75%',
+            'transition': '.5s'
+        });
+    }
+}
+
+function closeModalEvent() {
+    $('.navbars').css({
+        'width': '0%',
+        'transition': '.5s'
+    });
+}
+
 function getFeatures(scopeFeatures) {
     let features = scopeFeatures.map(key => {
         let keys = [];
@@ -10,38 +44,6 @@ function getFeatures(scopeFeatures) {
     });
     features = [].concat(...features);
     return features;
-}
-
-// Current Navigation Event
-function currNavEvent(event) {
-    let features = getFeatures(Object.keys(this.$parent));
-
-    // return false into all feature
-    features.forEach(feature => this[feature] = false);
-    console.log(features);
-    let name = "add" + event[0].toUpperCase() + event.slice(1, event.length);
-    this[name] = true;
-    console.log(this[name]);
-}
-
-function currentNavEvent(event) {
-    switch (event) {
-        case "employee":
-            this.addEmployee = true;
-            this.addTeam = false;
-            this.addPosition = false;
-            break;
-        case "team":
-            this.addEmployee = false;
-            this.addTeam = true;
-            this.addPosition = false;
-            break;
-        case "position":
-            this.addEmployee = false;
-            this.addTeam = false;
-            this.addPosition = true;
-            break;
-    }
 }
 
 function checkAllScope() {
@@ -69,26 +71,4 @@ function choseTeam(event) {
     } else {
         this.hideShow = false;
     }
-}
-
-function openModalEvent() {
-    let _width = window.screen.width;
-    if (_width > 580) {
-        $('.navbars').css({
-            'width': '45%',
-            'transition': '.5s'
-        });
-    } else {
-        $('.navbars').css({
-            'width': '75%',
-            'transition': '.5s'
-        });
-    }
-}
-
-function closeModalEvent() {
-    $('.navbars').css({
-        'width': '0%',
-        'transition': '.5s'
-    });
 }

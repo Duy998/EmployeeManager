@@ -1,4 +1,9 @@
-app.controller('teamCtrl', function($scope, filterFilter) {
+angular.module('myApp').config(function($routeProvider) {
+    $routeProvider.when('/team', {
+        templateUrl: "file/team/default.html",
+        controller: "teamCtrl"
+    })
+}).controller('teamCtrl', function($scope, filterFilter) {
     $scope.nameDefault = "List Team";
     $scope.viewTeam = "file/team/listteam.html";
     $scope.sortType = 'name';
