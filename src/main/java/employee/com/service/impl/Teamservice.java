@@ -1,7 +1,6 @@
 package employee.com.service.impl;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,16 +42,13 @@ public class Teamservice implements ITeamService {
 	}
 
 	@Override
-	public void InsertTeam(TeamDTO dto) {
-		TeamEntity entity = new TeamEntity();
-		entity = teamconverter.toentity(dto);		
-		UserEntity userentity = userrepository.findOne(dto.getGetidUsers());
-		entity.setNameManager(userentity.getName());
-		entity.setNumber(dto.getCountNumber().length);
-		teamrepository.save(entity);
+	public TeamDTO InsertTeam(TeamDTO dto) {	
+		return teamconverter.todto(teamrepository.save(teamconverter.toentity(dto)));
 		
 	}
 
+	
+	
 	@Override
 	public void UpdateTeam(TeamDTO dto) {
 		TeamEntity entity = teamrepository.findOne(dto.getId());

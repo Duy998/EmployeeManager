@@ -28,8 +28,8 @@ public class TeamAPI {
 	}
 	
 	@PostMapping
-	public void insertteam(@RequestBody TeamDTO dto) {
-		iteamservice.InsertTeam(dto);
+	public TeamDTO insertteam(@RequestBody TeamDTO dto) {
+		return iteamservice.InsertTeam(dto);
 	}
 	
 	@PutMapping

@@ -21,7 +21,7 @@
 		<div class="listteam__header__icon">
 	 
 			<button type="submit" class="btn btn-primary" ng-click="Delete()"><i class="fas fa-trash-alt"></i></button>
-			<a ng-click="load()">
+			<a href="#!AddTeam">
 				<i class="fas fa-plus-circle"></i>
 			</a>
 			
@@ -32,7 +32,7 @@
 			<thead>
 				<tr>
 					<td style="width: 5%;"><input type="checkbox" id="check_all"
-						ng-click="checkAll()" value="" /></td>
+						value="" ng-model="all" ng-click="selectAll()"/></td>
 					<td ng-click="sortType = 'name'; sortReverse = !sortReverse">
 						Name Team<span ng-show="sortType == 'name' && !sortReverse"
 						></span> <span
@@ -58,8 +58,7 @@
 				<tr class="childTeam" ng-click="choseTeamEvent(x.name)"
 					ng-repeat="x in teams | orderBy:sortType:sortReverse | filter:search">
 					
-					<td><input type="checkbox" ng-checked="exist(x.name)" ng-model="selectd"
-	                  		ng-click="toggleselectuser(x.id)" ></td>
+					<td><input type="checkbox" ng-checked="all"></td>
 					<td>{{ x.name }}</td>
 					<td>{{ x.nameManager }}</td>
 					<td>{{ x.getidUsers}}</td>
