@@ -1,0 +1,117 @@
+ .main__app {
+    font-family: 'poppins', sans-serif;
+    box-shadow: #4e4b4b54 -1px 0px 5px 2px;
+}
+
+table,
+th,
+td ,tr,thead{
+    border: 1px solid grey;
+    border-collapse: collapse;
+    text-align: center;
+    cursor: pointer;
+}
+
+thead tr{
+    background: #00968842;
+}
+
+tr{
+    background-color: #b9ebf31f;
+    color: #080808c4;
+    /* font-weight: 600; */
+    font-size: 1.2rem;
+}
+table tbody .childTeam {
+    cursor: pointer;
+}
+
+.listteam__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2em;
+    background: #f8f9fc;
+    border-bottom: 2px solid #c19a9a5e;
+}
+
+.listteam__header__icon {
+    display: flex;
+}
+
+.listteam__header__icon button {
+    border: none;
+    color: cornflowerblue;
+    background: none;
+}
+
+.listteam__header__icon button:focus {
+    outline: none;
+}
+
+.listteam__header__icon a {
+    text-decoration: none;
+    display: block;
+    padding: 5px 10px;
+}
+
+.listteam__header__icon a:nth-child(1) {
+    color: red;
+}
+
+.listteam__header__icon a:nth-child(2) {
+    color: dodgerblue;
+}
+
+.listteam__header__name {
+    display: block;
+    width: 10rem;
+    color: #5185c5;
+}
+
+.listteam__header__search {
+    width: 50%;
+    position: relative;
+}
+
+.listteam__header__search input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #3a343436;
+    font-size: 13px;
+    border-radius: 9px;
+}
+
+.listteam__header__search input:focus {
+    outline: none;
+}
+
+.icon__search {
+    position: absolute;
+    right: 0%;
+    color: #82686870;
+    padding: 9px 15px;
+}
+
+.listteam__khung {
+    width: 20rem;
+    height: 20rem;
+}
+
+.listteam__khung__img {
+    height: 10rem;
+    width: 10rem;
+}
+
+.listteam__khung__name {
+    text-align: center;
+    line-height: 35px;
+}
+
+.listteam__body .col-sm-4 {
+    height: fit-content;
+} 
+
+
+/* ============================= */
+
