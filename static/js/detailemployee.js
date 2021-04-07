@@ -1,5 +1,7 @@
-app.controller('employeeCtrl', function ($scope, $http, $mdDialog) {
+app.controller('detailEmployeeCtrl', function ($scope, $http, $mdDialog) {
 
+	$scope.detailUser = JSON.parse(sessionStorage.detailuser);
+	
 	$scope.advantageForm = {
 		name: ""
 	}
@@ -24,11 +26,11 @@ app.controller('employeeCtrl', function ($scope, $http, $mdDialog) {
 	};
 
 	// method GET data with API Technical
-	function _loadAdvantageData() {
+	function _loadAdvantageData(detailUser) {
 		// Call API findAll Data
 		$http({
 			method: 'GET',
-			url: '/EmployeeManager/api/advantage'
+			url: '/EmployeeManager/' + $scope.detailUser.id + '/api/advantage'
 		}).then(function (res) { // success
 			$scope.advantages = res.data;
 
@@ -56,22 +58,23 @@ app.controller('employeeCtrl', function ($scope, $http, $mdDialog) {
 			console.log("Error: " + res.status + " : " + res.data);
 		});
 	}
+	
 	// Load the data Technical from server
-	_loadAdvantageData();
+	_loadAdvantageData($scope.detailUser);
 
 	// Method Delete List Advantage
 	$scope.deleteListAdvantage = function (selectCheck) {
 
 		// array ID Advantage
-		let arr = [];
+		let idAdvantages = [];
 		for (let i of selectCheck) {
-			arr.push(i.id);
+			idAdvantages.push(i.id);
 		}
 
 		// Delete call API delete
 		$http({
 			method: 'DELETE',
-			url: '/EmployeeManager/api/advantage/' + arr,
+			url: '/EmployeeManager/' + $scope.detailUser.id + '/api/advantage/' + idAdvantages,
 		}).then(function (response) {
 			_loadAdvantageData();
 		}, function (response) {
@@ -86,7 +89,7 @@ app.controller('employeeCtrl', function ($scope, $http, $mdDialog) {
 		} else {
 			$http({
 				method: 'POST',
-				url: '/EmployeeManager/api/advantage',
+				url: '/EmployeeManager/' + $scope.detailUser.id + '/api/advantage',
 				data: angular.toJson($scope.advantageForm),
 				headers: {
 					'Content-Type': 'application/json'
@@ -125,7 +128,7 @@ app.controller('employeeCtrl', function ($scope, $http, $mdDialog) {
 					console.log(x);
 					$http({
 						method: 'PUT',
-						url: '/EmployeeManager/api/advantage/' + x.id,
+						url: '/EmployeeManager/' + $scope.detailUser.id + '/api/advantage/' + x.id,
 						data: angular.toJson(x),
 						headers: {
 							'Content-Type': 'application/json'
