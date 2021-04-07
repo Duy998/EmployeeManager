@@ -39,22 +39,28 @@
 		</thead>
 
 
-		<tbody>
-			<tr class="childTeam" ng-click="choseTeamEvent(x.name)"
-				ng-repeat="x in teams.listresult | orderBy:sortType:sortReverse | filter:search">
-				<td><input ng-change="checkItem(x.id, x.selected)"
-					type="checkbox" ng-model="x.selected" /></td>
-				<td ng-click="Information(x.id)">{{ x.name }}</td>
-				<td>{{ x.nameManager }}</td>
-				<td>{{ x.number}}</td>
-				<td><button ng-click="loadbyid(x.id)" class="btn-edit">
-						<i class="fas fa-edit"></i>
-					</button></td>
-			</tr>
-		</tbody>
-
+			<tbody>
+				<tr class="childTeam" ng-click="choseTeamEvent(x.name)"
+					ng-repeat="x in filteredTodos | orderBy:sortType:sortReverse | filter:search">
+					<td><input ng-change="checkItem(x.text.id, x.text.selected)"
+						type="checkbox" ng-model="x.text.selected" /></td>
+					<td ng-click="Information(x.text.id)">{{ x.text.name }}</td>
+					<td>{{ x.text.nameManager }}</td>
+					<td>{{ x.text.number}}</td>
+					<td><button ng-click="loadbyid(x.text.id)" class="btn-edit">
+							<i class="fas fa-edit"></i>
+						</button></td>
+				</tr>
+			</tbody>
 	</table>
 </form>
+	
+ 	<pagination 
+      ng-model="currentPage"
+      total-items="todos.length"
+      max-size="maxSize"  
+      boundary-links="true">
+    </pagination>
 <div class="container">
 	<nav aria-label="Page navigation">
 		<ul class="pagination" id="pagination"></ul>
