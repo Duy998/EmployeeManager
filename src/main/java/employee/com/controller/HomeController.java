@@ -8,6 +8,12 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class HomeController {
 	
+	@RequestMapping("/login")
+	public ModelAndView loginPage() {
+		ModelAndView mav = new ModelAndView("login");
+		return mav;
+	}
+	
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public ModelAndView homePage() {
 		ModelAndView mav = new ModelAndView("dashboard");

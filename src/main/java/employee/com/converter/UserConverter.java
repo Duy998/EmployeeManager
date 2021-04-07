@@ -7,7 +7,7 @@ import employee.com.entity.UserEntity;
 
 @Component
 public class UserConverter {
-	public UserDTO userConverter(UserEntity userEnity) {
+	public UserDTO toDto(UserEntity userEnity) {
 		UserDTO userDto = new UserDTO();
 		userDto.setId(userEnity.getId());
 		userDto.setAge(userEnity.getAge());
@@ -17,6 +17,9 @@ public class UserConverter {
 		userDto.setNickName(userEnity.getNickName());
 		userDto.setProfile(userEnity.getProfile());
 		userDto.setStatus(userEnity.getStatus());
+		userDto.setSex(userEnity.getSex());
+		userDto.setIdRole(userEnity.getPosition().getId());
+		userDto.setRoleName(userEnity.getPosition().getName());
 		return userDto;
 	}
 }

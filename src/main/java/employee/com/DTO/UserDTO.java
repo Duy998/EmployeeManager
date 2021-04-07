@@ -11,9 +11,21 @@ public class UserDTO extends AbstactDTO<UserDTO>{
 	private Integer status;
 	private String email;
 	private String password;
+	private String newPassword;
+	private long idRole;
+	private String roleName;
 	private String message;
+	private Integer sex;
+	private String posiTion;
+	private String team;
 	
 	
+	public String getPosiTion() {
+		return posiTion;
+	}
+	public void setPosiTion(String posiTion) {
+		this.posiTion = posiTion;
+	}
 	public String getName() {
 		return name;
 	}
@@ -67,6 +79,36 @@ public class UserDTO extends AbstactDTO<UserDTO>{
 	}
 	public void setMessage(String message) {
 		this.message = message;
+	}
+	public long getIdRole() {
+		return idRole;
+	}
+	public void setIdRole(long idRole) {
+		this.idRole = idRole;
+	}
+	public String getRoleName() {
+		return roleName;
+	}
+	public void setRoleName(String roleName) {
+		this.roleName = roleName;
+	}
+	public String getNewPassword() {
+		return newPassword;
+	}
+	public void setNewPassword(String newPassword) {
+		this.newPassword = newPassword;
+	}
+	public Integer getSex() {
+		return sex;
+	}
+	public void setSex(Integer sex) {
+		this.sex = sex;
+	}
+	public String getTeam() {
+		return team;
+	}
+	public void setTeam(String team) {
+		this.team = team;
 	}
 	
 }

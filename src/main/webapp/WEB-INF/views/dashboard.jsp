@@ -28,6 +28,10 @@
 <link rel="stylesheet" type="text/css"
 	href='<c:url value = "/template/static/css/team.css"/>'>
 <link rel="stylesheet" type="text/css"
+	href='<c:url value = "/file/team/css/editteam.css"/>'>
+<link rel="stylesheet" type="text/css"
+	href='<c:url value = "/file/team/css/editteam.css"/>'>
+<link rel="stylesheet" type="text/css"
 	href='<c:url value = "/template/static/css/position.css"/>'>
 <!-- AngularJS (Default, animation, messages, sanitize, route) -->
 <script
@@ -65,18 +69,14 @@
 			<!-- Nav item -->
 			<div class="navbars__body">
 				<ul>
-					<li><a ng-class="{currentNavItem : addEmployee}"
-						ng-click="currentNav('employee')" href="#!"><i
+					<li><a class="navItem currentNavItem" href="#!"><i
 							class="fas fa-chalkboard-teacher mr-3"></i>Employee</a></li>
-					<li><a ng-class="{currentNavItem : addTeam}"
-						ng-click="currentNav('team')" href="#!team"><i
+					<li><a class="navItem" href="#!team"><i
 							class="fas fa-users mr-3"></i>Team</a></li>
-					<li><a ng-class="{currentNavItem : addPosition}"
-						ng-click="currentNav('position')" href="#!position"><i
+					<li><a class="navItem" href="#!position"><i
 							class="fas fa-vote-yea mr-3"></i>Position</a></li>
-					<li><a class="logout__dashboard"
-						href=""><i
-							class="fas fa-sign-out-alt mr-3"></i>Logout</a></li>
+					<li><a class="navItem" class="logout__dashboard" href="#"
+						ng-click="logout()"><i class="fas fa-sign-out-alt mr-3"></i>Logout</a></li>
 				</ul>
 			</div>
 			<div class="navbars__footer"></div>

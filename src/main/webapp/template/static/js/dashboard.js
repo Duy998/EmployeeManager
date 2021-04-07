@@ -1,31 +1,44 @@
-let app = angular.module('myApp', ['ngRoute', 'ngMaterial']);
+/**
+ * 
+ */
+(function() {
+	'user strict';
+	angular.module('myApp', ['ngRoute', 'ngMaterial']).config(function($routeProvider) {
+		$routeProvider.otherwise({
+			redirecTo: "/",
+			controller: "employeeCtrl"
+		});
+	}).controller('appCtrl', appCtrl);
+	function appCtrl($scope, $http) {
+		$scope.username = "Administrator";
+		$scope.hideShow = false;
 
-app.controller('appCtrl', function($scope) {
-    $scope.username = "Administrator";
-    $scope.addEmployee = true;
-    $scope.addTeam = false;
-    $scope.addPosition = false;
-    $scope.currentNav = currentNavEvent;
-    $scope.hideShow = false;
-    let url = window.location.href.split('#!/');
-    $scope.currentNav(url[url.length - 1]);
+		// Event open and close modal responsive
+		$scope.openModal = openModalEvent;
+		$scope.closeModal = closeModalEvent;
+		$scope.logout = logoutEvent;
+		if (!sessionStorage.user) {
+			location.href = "http://localhost:8080/EmployeeManager/login";
+		} else {
+			$scope.dataUser = JSON.parse(sessionStorage.user);
+		}
 
-    // Event open and close modal responsive
-    $scope.openModal = openModalEvent;
-    $scope.closeModal = closeModalEvent;
-    $scope.dataUser = JSON.parse(sessionStorage.user);
+		$scope.test = function() {
+			console.log(checkRole());
+		};
 
-});
-
-app.config(function($routeProvider) {
-    $routeProvider.when('/', {
-        templateUrl: 'file/employee/listemployee.html',
-        controller: 'employeeCtrl'
-    }).when('/team', {
-        templateUrl: 'file/team/default.html',
-        controller: 'teamCtrl'
-    }).when('/position', {
-        templateUrl: 'file/position/listposition.html',
-        controller: 'positionCtrl'
-    });
-});
+		function checkRole() {
+			let obj = JSON.parse(sessionStorage.user);
+			return $http.get("http://localhost:8080/EmployeeManager/api/checkrole?email=" + obj.email)
+			.then(function (response){ return response.data.roleName;});
+			/*$http({
+				method: "GET",
+				url: "http://localhost:8080/EmployeeManager/api/checkrole?email=" + obj.email
+			}).then(function(response) {
+				console.log(response.data.roleName);
+			}, function myError(response) {
+				console.log(response);
+			});*/
+		}
+	}
+})();
