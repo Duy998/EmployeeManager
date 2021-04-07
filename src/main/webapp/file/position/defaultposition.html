@@ -1,0 +1,31 @@
+<div class="default__header">
+	<div class="default__header__name">
+		<h4 class="font-weight-bolder">{{nameDefault}}</h4>
+	</div>
+	<div class="default__header__search">
+		<select ng-model="x">
+			<option ng-repeat="x in positiones" ng-value="x">{{x.name}}</option>
+		</select>
+	</div>
+	<div class="default__header__icon">
+		<a ng-click="deletePosition(x.id)"> <i class="fas fa-trash-alt"></i>
+		</a>
+		<!-- <a href="#">
+            <i class="fas fa-edit"></i>
+        </a> -->
+		<button ng-hide="hideShow"
+			ng-click="changeViewPosition('file/position/addposition.html')">
+			<a ng-click="editPosition(x)"><i class="fas fa-edit"></i></a>
+		</button>
+
+		<button ng-hide="hideShow"
+			ng-click="changeViewPosition('file/position/addposition.html')">
+			<a ng-click="createPosition()"><i class="fa fa-plus-circle"></i></a>
+		</button>
+		<button ng-show="hideShow"
+			ng-click="changeViewPosition('file/position/listposition.html')">
+			<i class="fas fa-undo-alt"></i>
+		</button>
+	</div>
+</div>
+<div class="default__body py-4" ng-include="viewPosition"></div>

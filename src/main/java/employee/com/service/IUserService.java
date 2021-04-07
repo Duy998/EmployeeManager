@@ -9,6 +9,16 @@ public interface IUserService {
 	// Find All
 	List<UserDTO> findAll();
 
+	void saveUser(UserDTO userDTO);
+
+	UserDTO updateUser(UserDTO dto, Long id);
+
+	void deleteListUser(Long[] ids);
+
+	void deleteUser(Long id);
+
+	// Find user by team
+
 	List<UserDTO> findUserByTeamId(Long teamid);
 
 	List<UserDTO> findUserByPositionName(String name);
@@ -19,5 +29,5 @@ public interface IUserService {
 	// Convert password to MD5
 	String getMD5(String password);
 
-	String getPass(String getMd5);
+	String getPass(String password);
 }

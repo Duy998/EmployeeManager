@@ -3,8 +3,12 @@ package employee.com.api;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,20 +20,45 @@ import employee.com.service.IUserService;
 public class UserAPI {
 
 	@Autowired
-	private IUserService iuserservice;
+	private IUserService iuserService;
 
+	// Find employee
 	@GetMapping
 	public List<UserDTO> getEmployees() {
-		return iuserservice.findAll();
+		return iuserService.findAll();
 	}
+
+	@PostMapping
+	public void insertUser(@RequestBody UserDTO dto) {
+		iuserService.saveUser(dto);
+	}
+
+	@PutMapping("/{id}")
+	public UserDTO updateUser(@RequestBody UserDTO dto, @PathVariable Long id) {
+		UserDTO userDTO = new UserDTO();
+		userDTO = iuserService.updateUser(dto, id);
+		return userDTO;
+	}
+
+	@DeleteMapping("/{ids}")
+	public void deleteListUser(@PathVariable Long[] ids) {
+		iuserService.deleteListUser(ids);
+	}
+
+	@DeleteMapping
+	public void deleteUser(@PathVariable Long id) {
+		iuserService.deleteUser(id);
+	}
+
+	// Find team
 
 	@GetMapping("/{teamid}/team")
 	public List<UserDTO> getUserByteamid(@PathVariable("teamid") Long teamid) {
-		return iuserservice.findUserByTeamId(teamid);
+		return iuserService.findUserByTeamId(teamid);
 	}
 
 	@GetMapping("/{teamid}/position")
 	public List<UserDTO> getUserByPositionName(@PathVariable("teamid") String name) {
-		return iuserservice.findUserByPositionName(name);
+		return iuserService.findUserByPositionName(name);
 	}
 }

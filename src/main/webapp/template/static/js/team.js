@@ -25,7 +25,6 @@ angular.module('myApp').config(function($routeProvider) {
 
 	/*==========================================================================*/
 	/*$(function() {
-
 		window.pagObj = $('#pagination').twbsPagination({
 			totalPages: 10,
 			visiblePages: 5,
@@ -34,8 +33,6 @@ angular.module('myApp').config(function($routeProvider) {
 				console.info(page + ' (from event listening)');
 			}
 		}).on('page', function(event, page) {
-
-
 		});
 	});*/
 	/*============================*/
@@ -49,19 +46,29 @@ angular.module('myApp').config(function($routeProvider) {
 			url: 'http://localhost:8080/EmployeeManager/api/team?page=1&limit=2'
 		}).then(function(res) { // success
 			$scope.teams = res.data;
-			$(function() {
-				window.pagObj = $('#pagination').twbsPagination({
-					totalPages: 10,
-					visiblePages: 5,
-					startPage: res.data.id,
-					onPageClick: function(event, page) {
-						console.info(page + ' (from event listening)');
-					}
-				}).on('page', function(event, page) {
 
+			/*================panageble==========================================================*/
+			$scope.filteredTodos = []
+				, $scope.currentPage = 1
+				, $scope.numPerPage = 10
+				, $scope.maxSize = 3;
 
-				});
+			$scope.makeTodos = function() {
+				$scope.todos = [];
+				for (i = 0; i < $scope.teams.listresult.length; i++) {
+					$scope.todos.push({ text: $scope.teams.listresult[i], done: false });
+				}
+			};
+			$scope.makeTodos();
+
+			$scope.$watch('currentPage + numPerPage', function() {
+				var begin = (($scope.currentPage - 1) * $scope.numPerPage)
+					, end = begin + $scope.numPerPage;
+
+				$scope.filteredTodos = $scope.todos.slice(begin, end);
 			});
+			/*============================*/
+
 		}, function(res) { // error
 			console.log("Error: " + res.status + " : " + res.data);
 		});

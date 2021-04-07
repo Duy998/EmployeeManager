@@ -61,7 +61,6 @@ function getFeatures(scopeFeatures) {
 	features = [].concat(...features);
 	return features;
 }
-
 function checkAllScope() {
 	let checkboxs = document.getElementsByName("name[]");
 	for (let i = 0; i < checkboxs.length; i++) {
@@ -81,8 +80,48 @@ function changeViewEvent(event) {
 }
 
 function choseTeam(event) {
-	this.viewTeam = "file/team/inforteam.html";
-	if (this.viewTeam != "file/team/inforteam.html") {
+	this.viewTeam = "file/team/inforteam.jsp";
+	if (this.viewTeam != "file/team/inforteam.jsp") {
+		this.hideShow = true;
+	} else {
+		this.hideShow = false;
+	}
+}
+
+function changeViewEventEmployee(event) {
+	this.viewEmployee = event;
+	if (event != "file/employee/listemployee.html") {
+		this.nameDefault = "DK Employee";
+		this.hideShow = true;
+	} else {
+		this.nameDefault = "Employee";
+		this.hideShow = false;
+	}
+}
+
+function choseTeamEmployee(event) {
+	this.viewEmployee = "file/employee/addemployee.html";
+	if (this.viewEmployee != "file/employee/addemployee.html") {
+		this.hideShow = true;
+	} else {
+		this.hideShow = false;
+	}
+}
+
+function changeViewEventPosition(event) {
+	this.viewPosition = event;
+	if (event != "file/position/listposition.html") {
+		this.nameDefault = "DK Position";
+		this.hideShow = true;
+	} else {
+		this.nameDefault = "Position";
+		this.hideShow = false;
+	}
+}
+
+function choseTeamPosition(event) {
+	this.viewPosition = "file/position/addposition.html";
+	if (this.viewPosition != "file/position/addposition.html") {
 		this.hideShow = true;
 	} else {
 		this.hideShow = false;

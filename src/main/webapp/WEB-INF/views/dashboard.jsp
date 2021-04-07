@@ -28,10 +28,6 @@
 <link rel="stylesheet" type="text/css"
 	href='<c:url value = "/template/static/css/team.css"/>'>
 <link rel="stylesheet" type="text/css"
-	href='<c:url value = "/file/team/css/editteam.css"/>'>
-<link rel="stylesheet" type="text/css"
-	href='<c:url value = "/file/team/css/editteam.css"/>'>
-<link rel="stylesheet" type="text/css"
 	href='<c:url value = "/template/static/css/position.css"/>'>
 <!-- AngularJS (Default, animation, messages, sanitize, route) -->
 <script
@@ -49,7 +45,8 @@
 <script
 	src='<c:url value = "/template/static/libs/angular-material.min.js"/>'></script>
 </head>
-<body ng-app="myApp" ng-controller="appCtrl" ng-cloak>
+<body class="bg-secondary" ng-app="myApp" ng-controller="appCtrl"
+	ng-cloak>
 	<div class="dashboard">
 		<!-- Sidebar -->
 		<div class="navbars">
@@ -118,5 +115,17 @@
 	<script src='<c:url value = "/template/static/js/team.js"/>'></script>
 	<script src='<c:url value = "/template/static/js/position.js"/>'></script>
 	<script src='<c:url value = "/template/static/js/function.js"/>'></script>
+	<script src='<c:url value = "/template/static/js/addemployee.js"/>'></script>
+
+	<!-- File -->
+
+	<script
+		src='<c:url value = "/template/static/libs/checklist-model.js"/>'></script>
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+	<link rel="stylesheet"
+		href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" />
+	<script src="https://code.angularjs.org/1.3.15/angular.js"></script>
+	<script
+		src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.12.1.min.js"></script>
 </body>
 </html>

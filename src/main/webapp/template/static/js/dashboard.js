@@ -3,7 +3,7 @@
  */
 (function() {
 	'user strict';
-	angular.module('myApp', ['ngRoute', 'ngMaterial']).config(function($routeProvider) {
+	angular.module('myApp', ['ngRoute', 'ngMaterial', 'ui.bootstrap']).config(function($routeProvider) {
 		$routeProvider.otherwise({
 			redirecTo: "/",
 			controller: "employeeCtrl"
@@ -24,14 +24,20 @@
 		}
 
 		$scope.test = function() {
-			console.log(checkRole());
+			if (sessionStorage.user != sessionStorage.user) {
+				console.log(true);
+				location.href = "http://localhost:8080/EmployeeManager/login";
+			} else {
+				console.log(false, checkRole());
+			}
 		};
 
 		function checkRole() {
 			let obj = JSON.parse(sessionStorage.user);
-			return $http.get("http://localhost:8080/EmployeeManager/api/checkrole?email=" + obj.email)
+			return obj.roleName;
+			/*return $http.get("http://localhost:8080/EmployeeManager/api/checkrole?email=" + obj.email)
 			.then(function (response){ return response.data.roleName;});
-			/*$http({
+			$http({
 				method: "GET",
 				url: "http://localhost:8080/EmployeeManager/api/checkrole?email=" + obj.email
 			}).then(function(response) {

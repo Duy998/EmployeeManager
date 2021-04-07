@@ -17,7 +17,7 @@ public class LoginApi {
 
 	@Autowired
 	private ILoginService loginService;
-	
+
 	@Autowired
 	private IUserService iuserService;
 
@@ -40,7 +40,7 @@ public class LoginApi {
 		userDTO = loginService.sendEmail(userDTO.getEmail());
 		return userDTO;
 	}
-	
+
 	@RequestMapping(value = "/checkrole", method = RequestMethod.GET)
 	public UserDTO checkRole(@RequestParam String email) {
 		UserDTO userDTO = new UserDTO();

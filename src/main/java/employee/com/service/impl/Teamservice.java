@@ -6,8 +6,6 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import employee.com.DTO.TeamDTO;
@@ -38,9 +36,9 @@ public class Teamservice implements ITeamService {
 
 	@Override
 	public TeamDTO findAll(int page,int limit) {
-		Pageable pageable = new PageRequest(page-1, limit);
 		
-		List<TeamEntity> entitys = teamrepository.findAll(pageable).getContent();
+		
+		List<TeamEntity> entitys = teamrepository.findAll();
 		
 		TeamDTO result = new TeamDTO();
 		List<TeamDTO> listteam = new ArrayList<>();

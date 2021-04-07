@@ -38,8 +38,8 @@ public class UserEntity extends BaseEntity {
 
 	@Column(name = "password")
 	private String password;
-	
-	@Column(name="sex")
+
+	@Column(name = "sex")
 	private Integer sex;
 
 	// with PositionEntity
@@ -121,7 +121,7 @@ public class UserEntity extends BaseEntity {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
+
 	public Integer getSex() {
 		return sex;
 	}
@@ -161,6 +161,5 @@ public class UserEntity extends BaseEntity {
 	public void setAdvantages(List<AdvantageEntity> advantages) {
 		this.advantages = advantages;
 	}
-	
 
 }

@@ -1,7 +1,5 @@
 package employee.com.api;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,51 +19,47 @@ import employee.com.service.ITeamService;
 @RestController
 @RequestMapping(value = "/api/team")
 public class TeamAPI {
-	
+
 	@Autowired
 	private ITeamService iteamservice;
-	
+
 	@Autowired
 	private ITeamRequestService itemrequest;
-	
+
 	@GetMapping
-	public TeamDTO getlistteam(@RequestParam("page") int page, 
-			 						 @RequestParam("limit") int limit) {
-		return iteamservice.findAll(page,limit);
+	public TeamDTO getlistteam(@RequestParam("page") int page, @RequestParam("limit") int limit) {
+		return iteamservice.findAll(page, limit);
 	}
-	
+
 	@PostMapping
 	public TeamDTO insertteam(@RequestBody TeamDTO dto) {
 		return iteamservice.InsertTeam(dto);
 	}
-	
-	@PutMapping	
+
+	@PutMapping
 	public TeamDTO updateteam(@RequestBody TeamRrequest teamrequest) {
 		return iteamservice.UpdateTeam(teamrequest);
 	}
-	
+
 	@DeleteMapping("/{ids}")
 	public void deleteteam(@PathVariable Long[] ids) {
-		 iteamservice.deleteTeam(ids);
+		iteamservice.deleteTeam(ids);
 	}
-	
+
 	@GetMapping("/{teamid}")
 	public TeamDTO selectTeamByIteam(@PathVariable("teamid") Long teamid) {
 		return iteamservice.findOneByid(teamid);
 	}
-	
+
 	/* ===========loadUserAnd Insert or Update=========== */
-	
-	
-	
-	
-	/* ===========/loadUserAnd Insert or Update===========*/
-	
+
+	/* ===========/loadUserAnd Insert or Update=========== */
+
 	@GetMapping("/loadteam/{teamid}")
 	public TeamRrequest loadteambeforupdate(@PathVariable("teamid") Long teamid) {
 		return itemrequest.findAll(teamid);
 	}
-	
+
 	/* ===================inforteam============================== */
 	@GetMapping("/inforteam/{teamid}")
 	public TeamDTO inforteam(@PathVariable("teamid") Long teamid) {

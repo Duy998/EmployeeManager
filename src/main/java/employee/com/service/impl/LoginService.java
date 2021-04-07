@@ -66,7 +66,7 @@ public class LoginService implements ILoginService {
 		UserDTO userDTO = new UserDTO();
 		if (userEntity != null && userEntity.getStatus() == 1) {
 			String password = iuserService.getPass(userEntity.getPassword());
-			senderEmail("phamhongnghia13579@gmail.com", email,"Forgot password", password);
+			senderEmail("phamhongnghia13579@gmail.com", email, "Forgot password", password);
 			userDTO.setMessage("true");
 		} else {
 			userDTO.setMessage("false");

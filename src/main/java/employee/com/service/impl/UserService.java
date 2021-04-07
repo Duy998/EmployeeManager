@@ -9,7 +9,9 @@ import org.springframework.util.DigestUtils;
 
 import employee.com.DTO.UserDTO;
 import employee.com.converter.UserConverter;
+import employee.com.entity.PositionEntity;
 import employee.com.entity.UserEntity;
+import employee.com.repository.PositionRepository;
 import employee.com.repository.UserRepository;
 import employee.com.service.IUserService;
 
@@ -17,32 +19,72 @@ import employee.com.service.IUserService;
 public class UserService implements IUserService {
 
 	@Autowired
-	private UserRepository userrepository;
+	private UserRepository userRepository;
 
 	@Autowired
-	private UserConverter userconverter;
+	private UserConverter userConverter;
+
+	@Autowired
+	private PositionRepository positionRepository;
 
 	@Override
 	public List<UserDTO> findAll() {
 		List<UserDTO> result = new ArrayList<>();
-		List<UserEntity> entity = userrepository.findAll();
+		List<UserEntity> entity = userRepository.findAll();
 		for (UserEntity userEntity : entity) {
 			UserDTO dto = new UserDTO();
-			dto.setId(userEntity.getId());
-			dto.setName(userEntity.getName());
-			dto.setNickName(userEntity.getNickName());
-			dto.setAge(userEntity.getAge());
+			dto = userConverter.toDto(userEntity);
+			dto.setRoleName(userEntity.getPosition().getName());
 			result.add(dto);
 		}
 		return result;
 	}
 
 	@Override
+	public void saveUser(UserDTO dto) {
+		UserEntity userEntity = new UserEntity();
+		userEntity = userConverter.toEntity(dto);
+		PositionEntity position = positionRepository.findOne(dto.getIdRole());
+		userEntity.setPassword(getMD5(dto.getPassword()));
+		userEntity.setPosition(position);
+		userRepository.save(userEntity);
+	}
+
+	@Override
+	public void deleteUser(Long id) {
+		UserEntity userEntity = new UserEntity();
+		userEntity.setId(id);
+		userRepository.delete(id);
+
+	}
+
+	@Override
+	public UserDTO updateUser(UserDTO dto, Long id) {
+		UserEntity userEntity = new UserEntity();
+		userEntity = userRepository.findOne(id);
+		userEntity = userConverter.toEntity(dto);
+		userEntity.setId(id);
+		PositionEntity positionEntity = positionRepository.findOne(dto.getIdRole());
+		userEntity.setPosition(positionEntity);
+		UserDTO userDTO = new UserDTO();
+		userRepository.save(userEntity);
+		userDTO.setMessage("true");
+		return userDTO;
+	}
+
+	@Override
+	public void deleteListUser(Long[] ids) {
+		for (Long id : ids) {
+			userRepository.delete(id);
+		}
+	}
+
+	@Override
 	public List<UserDTO> findUserByTeamId(Long teamid) {
 		List<UserDTO> result = new ArrayList<>();
-		List<UserEntity> entity = userrepository.findUserByIdTeam(teamid);
+		List<UserEntity> entity = userRepository.findUserByIdTeam(teamid);
 		for (UserEntity userEntity : entity) {
-			UserDTO dto = userconverter.toDto(userEntity);
+			UserDTO dto = userConverter.toDto(userEntity);
 
 			if (userEntity.getTeam() != null) {
 				dto.setTeam(userEntity.getTeam().getName());
@@ -62,16 +104,17 @@ public class UserService implements IUserService {
 	@Override
 	public List<UserDTO> findUserByPositionName(String name) {
 		List<UserDTO> result = new ArrayList<>();
-		List<UserEntity> entity = userrepository.findUserByPositionName(name);
+		List<UserEntity> entity = userRepository.findUserByPositionName(name);
 		for (UserEntity userEntity : entity) {
-			result.add(userconverter.toDto(userEntity));
+			result.add(userConverter.toDto(userEntity));
 		}
 		return result;
 	}
 
+	// Check role user
 	@Override
 	public UserDTO checkRole(String email) {
-		UserEntity userEntity = userrepository.findByEmail(email);
+		UserEntity userEntity = userRepository.findByEmail(email);
 		UserDTO userDTO = new UserDTO();
 		if (userEntity != null) {
 			userDTO.setRoleName(userEntity.getPosition().getName());
@@ -82,6 +125,7 @@ public class UserService implements IUserService {
 		return userDTO;
 	}
 
+	// MD5
 	@Override
 	public String getMD5(String password) {
 		String hashPass = DigestUtils.md5DigestAsHex(password.getBytes()).toUpperCase();
