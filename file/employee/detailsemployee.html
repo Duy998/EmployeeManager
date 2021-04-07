@@ -28,50 +28,50 @@
 									<tr>
 										<td>Name</td>
 										<td class="displaydetails">
-											<p>A</p>
+											<p>{{detailUser.name}}</p>
 										</td>
 									</tr>
 									<tr>
 										<td>NickName</td>
 										<td class="displaydetails">
-											<p>A</p>
+											<p>{{detailUser.nickName}}</p>
 										</td>
 									</tr>
 									<tr>
 										<td>Age</td>
 										<td class="displaydetails">
-											<p>A</p>
+											<p>{{detailUser.age}}</p>
 										</td>
 									</tr>
 									<tr>
 										<td>Position</td>
 										<td class="displaydetails"><Select>
-												<option>A</option>
+												<option>{{detailUser.idRole}}</option>
 												<option>V</option>
 											</Select></td>
 									</tr>
 									<tr>
 										<td>Email</td>
 										<td class="displaydetails">
-											<p>A</p>
+											<p>{{detailUser.email}}</p>
 										</td>
 									</tr>
 									<tr>
 										<td>Is active</td>
 										<td class="displaydetails">
-											<p>A</p>
+											<p>{{detailUser.status}}</p>
 										</td>
 									</tr>
 									<tr>
 										<td>Day start</td>
 										<td class="displaydetails">
-											<md-datepicker ng-model="birthday"></md-datepicker>
+											<md-datepicker ng-model="birthday">{{detailUser.dayStart}}</md-datepicker>
 										</td>
 									</tr>
 									<tr>
 										<td>Team</td>
 										<td class="displaydetails"><Select>
-												<option>Aasa</option>
+												<option>{{detailUser.message}}</option>
 												<option>V</option>
 											</Select></td>
 									</tr>
@@ -81,7 +81,9 @@
 					</md-tab> <!-- 	Tab PROFILE -->
 					<md-tab label="Profile">
 						<md-content class="md-padding">
-							<div id="editor"></div>
+							<div>
+								<p>{{detailUser.profile}}</p>
+							</div>
 						</md-content>
 					</md-tab> <!-- 	Tab TECHNICAL -->
 					<md-tab label="Technical">
