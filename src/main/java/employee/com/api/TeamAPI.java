@@ -10,9 +10,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import employee.com.DTO.TeamDTO;
+import employee.com.DTO.Request.TeamRrequest;
+import employee.com.service.ITeamRequestService;
 import employee.com.service.ITeamService;
 
 @RestController
@@ -22,9 +25,13 @@ public class TeamAPI {
 	@Autowired
 	private ITeamService iteamservice;
 	
+	@Autowired
+	private ITeamRequestService itemrequest;
+	
 	@GetMapping
-	public List<TeamDTO> getlistteam() {
-		return iteamservice.findAll();
+	public TeamDTO getlistteam(@RequestParam("page") int page, 
+			 						 @RequestParam("limit") int limit) {
+		return iteamservice.findAll(page,limit);
 	}
 	
 	@PostMapping
@@ -32,15 +39,14 @@ public class TeamAPI {
 		return iteamservice.InsertTeam(dto);
 	}
 	
-	@PutMapping
-	public void updateteam(@RequestBody TeamDTO dto) {
-		iteamservice.UpdateTeam(dto);
+	@PutMapping	
+	public TeamDTO updateteam(@RequestBody TeamRrequest teamrequest) {
+		return iteamservice.UpdateTeam(teamrequest);
 	}
 	
-	@DeleteMapping
-	public void deleteteam(@RequestBody Long[] dto) {
-		System.out.println(dto);
-		/* iteamservice.deleteTeam(dto.getIds()); */
+	@DeleteMapping("/{ids}")
+	public void deleteteam(@PathVariable Long[] ids) {
+		 iteamservice.deleteTeam(ids);
 	}
 	
 	@GetMapping("/{teamid}")
@@ -56,8 +62,13 @@ public class TeamAPI {
 	/* ===========/loadUserAnd Insert or Update===========*/
 	
 	@GetMapping("/loadteam/{teamid}")
-	public List<TeamDTO> loadteambeforupdate(@PathVariable("teamid") Long teamid) {
-		return iteamservice.LoadTeambeforupdate(teamid);
+	public TeamRrequest loadteambeforupdate(@PathVariable("teamid") Long teamid) {
+		return itemrequest.findAll(teamid);
 	}
 	
+	/* ===================inforteam============================== */
+	@GetMapping("/inforteam/{teamid}")
+	public TeamDTO inforteam(@PathVariable("teamid") Long teamid) {
+		return iteamservice.Inforteam(teamid);
+	}
 }

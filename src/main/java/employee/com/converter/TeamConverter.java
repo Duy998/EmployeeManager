@@ -15,7 +15,6 @@ public class TeamConverter {
 		}
 		result.setName(entity.getName());
 		result.setNameManager(entity.getNameManager());
-		result.setNumber(entity.getNumber());
 		return result;
 	}
 

@@ -1,3 +1,15 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@include file="/common/taglib.jsp"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<%-- <link rel="stylesheet" type="text/css"
+	href='<c:url value = "/file/team/css/editteam.css"/>'> --%>
+</head>
+<body>
+
 <div id="add" tabindex="-1" role="dialog"
 	aria-labelledby="add-modal-label">
 
@@ -16,9 +28,6 @@
 								required>
 						</div>
 					</div>
-					
-					
-
 				</div>
 				<div class="modal-footer">
 					<button type="submit" class="btn btn-primary" ng-click="Add()">Save
@@ -28,3 +37,6 @@
 		</div>
 	</div>
 </div>
+
+</body>
+</html>

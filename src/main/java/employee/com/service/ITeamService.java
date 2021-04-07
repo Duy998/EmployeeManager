@@ -1,15 +1,17 @@
 package employee.com.service;
 
-import java.util.List;
-
 import employee.com.DTO.TeamDTO;
+import employee.com.DTO.Request.TeamRrequest;
 
 public interface ITeamService {
 
-	List<TeamDTO> findAll();
+	TeamDTO findAll(int page,int limit);
 	TeamDTO InsertTeam(TeamDTO dto);
-	void UpdateTeam(TeamDTO dto);
+	TeamDTO UpdateTeam(TeamRrequest dto);
 	void deleteTeam(Long[] ids);
 	TeamDTO findOneByid(Long id);
-	List<TeamDTO> LoadTeambeforupdate(Long teamid);
+//	List<TeamDTO> LoadTeambeforupdate(Long teamid);
+//	TeamDTO updateTeam(TeamDTO dto); 
+	int getTotalItem();
+	TeamDTO Inforteam(Long id);
 }

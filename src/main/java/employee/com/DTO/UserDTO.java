@@ -1,5 +1,8 @@
 package employee.com.DTO;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class UserDTO extends AbstactDTO<UserDTO>{
 
 	
@@ -15,9 +18,17 @@ public class UserDTO extends AbstactDTO<UserDTO>{
 	private String messger;
 	private String passWord;
 	private String checked;
+	private String exPe;
+	private List<String> listmanager = new ArrayList<String>();
 	
 	
 	
+	public List<String> getListmanager() {
+		return listmanager;
+	}
+	public void setListmanager(List<String> listmanager) {
+		this.listmanager = listmanager;
+	}
 	public String getPassWord() {
 		return passWord;
 	}
@@ -90,6 +101,12 @@ public class UserDTO extends AbstactDTO<UserDTO>{
 	}
 	public void setChecked(String checked) {
 		this.checked = checked;
+	}
+	public String getExPe() {
+		return exPe;
+	}
+	public void setExPe(String exPe) {
+		this.exPe = exPe;
 	}
 	
 	

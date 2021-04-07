@@ -1,4 +1,4 @@
-let app = angular.module('myApp', ['ngRoute', 'ngMaterial']);
+let app = angular.module('myApp', ['ngRoute', 'ngMaterial','checklist-model']);
 
 app.controller('appCtrl', function($scope) {
     $scope.username = "Administrator";

@@ -8,81 +8,71 @@
 <title>HomeTeam</title>
 </head>
 <body>
-<form class="form-horizontal" id="add-form">
-	<div class="listteam__header">
-		<div class="listteam__header__name">
-			<h4 class="font-weight-bolder">{{nameDefault}}</h4>
+	<form class="form-horizontal" id="add-form">
+		<div class="listteam__header">
+			<div class="listteam__header__name">
+				<h4 class="font-weight-bolder">{{nameDefault}}</h4>
+			</div>
+			<div class="listteam__header__search">
+				<input type="text" placeholder="search team" ng-model="search.$">
+				<a class="icon__search" href="#"><i class="fas fa-search"></i></a>
+			</div>
+			<div class="listteam__header__icon">
+
+				<button type="submit" ng-click="Delete()">
+					<i class="fas fa-trash-alt"></i>
+				</button>
+				<a href="#!AddTeam"> <i class="fas fa-plus-circle"></i>
+				</a>
+
+			</div>
 		</div>
-		<div class="listteam__header__search">
-			<p>{{namee}}</p>
-			<input type="text" placeholder="search team" ng-model="search.$">
-			<a class="icon__search" href="#"><i class="fas fa-search"></i></a>
-		</div>
-		<div class="listteam__header__icon">
-	 
-			<button type="submit" class="btn btn-primary" ng-click="Delete()"><i class="fas fa-trash-alt"></i></button>
-			<a href="#!AddTeam">
-				<i class="fas fa-plus-circle"></i>
-			</a>
-			
-		</div>
-	</div>
-	<div>
+		<div></div>
 		<table class="table">
 			<thead>
-				<tr>
-					<td style="width: 5%;"><input type="checkbox" id="check_all"
-						value="" ng-model="all" ng-click="selectAll()"/></td>
+				<tr class="tr_td_frirst">
+					<td style="width: 5%;"><input type="checkbox"
+						ng-change="checkAll(checkedAll)" ng-model="checkedAll" /></td>
 					<td ng-click="sortType = 'name'; sortReverse = !sortReverse">
-						Name Team<span ng-show="sortType == 'name' && !sortReverse"
-						></span> <span
-						ng-show="sortType == 'name' && sortReverse"></span>
+						NAME TEAM<span ng-show="sortType == 'name' && !sortReverse"></span>
+						<span ng-show="sortType == 'name' && sortReverse"></span>
 					</td>
 					<td ng-click="sortType = 'ex'; sortReverse = !sortReverse">
-						Name Manager <span ng-show="sortType == 'ex' && !sortReverse"
-						></span> <span
-						ng-show="sortType == 'ex' && sortReverse" ></span>
-						</p>
+						NAME<span ng-show="sortType == 'ex' && !sortReverse"></span>
 					</td>
 					<td ng-click="sortType = 'position'; sortReverse = !sortReverse">
-						Number <span ng-show="sortType == 'position' && !sortReverse"
-						></span> <span
-						ng-show="sortType == 'position' && sortReverse"
-						></span>
+						NUMBER <span ng-show="sortType == 'position' && !sortReverse"></span>
+						<span ng-show="sortType == 'position' && sortReverse"></span>
 					</td>
-					<td>edit</td>
+					<td>EDIT</td>
 				</tr>
 			</thead>
 
+
 			<tbody>
 				<tr class="childTeam" ng-click="choseTeamEvent(x.name)"
-					ng-repeat="x in teams | orderBy:sortType:sortReverse | filter:search">
-					
-					<td><input type="checkbox" ng-checked="all"></td>
-					<td>{{ x.name }}</td>
+					ng-repeat="x in teams.listresult | orderBy:sortType:sortReverse | filter:search">
+					<td><input ng-change="checkItem(x.id, x.selected)"
+						type="checkbox" ng-model="x.selected" /></td>
+					<td ng-click="Information(x.id)">{{ x.name }}</td>
 					<td>{{ x.nameManager }}</td>
-					<td>{{ x.getidUsers}}</td>
-					<td><a href="" ng-click="loadbyid(x.id)"> <i
-							class="fas fa-edit"></i></a></td>
+					<td>{{ x.number}}</td>
+					<td><button ng-click="loadbyid(x.id)" class="btn-edit">
+							<i class="fas fa-edit"></i>
+						</button></td>
 				</tr>
 			</tbody>
-		</table>
-		<ul class="pagination" id="pagination"></ul>
 
+		</table>
+	</form>
+	<div class="container">
+		<nav aria-label="Page navigation">
+			<ul class="pagination" id="pagination"></ul>
+		</nav>
 	</div>
-</form>
-	<script type="text/javascript">
-		$(function() {
-			window.pagObj = $('#pagination').twbsPagination({
-				totalPages : 35,
-				visiblePages : 5,
-				onPageClick : function(event, page) {
-					console.info(page + ' (from options)');
-				}
-			}).on('page', function(event, page) {
-				console.info(page + ' (from event listening)');
-			});
-		});
-	</script>
+	
+
+	
+	
 </body>
 </html>

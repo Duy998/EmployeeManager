@@ -9,10 +9,18 @@ public class TeamDTO extends AbstactDTO<TeamDTO>{
 	private Integer number;
 	private Long[] countNumber;
 	private Long getidUsers ;
+	private String exPe;
 	private List<UserDTO> users = new ArrayList<>();
 	
+
+
 	
-	
+	public String getExPe() {
+		return exPe;
+	}
+	public void setExPe(String exPe) {
+		this.exPe = exPe;
+	}
 	public List<UserDTO> getUsers() {
 		return users;
 	}

@@ -27,8 +27,8 @@
 	href='<c:url value = "/template/static/css/employee.css"/>'>
 <link rel="stylesheet" type="text/css"
 	href='<c:url value = "/template/static/css/team.css"/>'>
-<link rel="stylesheet" type="text/css"
-	href='<c:url value = "/template/static/css/position.css"/>'>
+
+	
 <!-- AngularJS (Default, animation, messages, sanitize, route) -->
 <script
 	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
@@ -44,6 +44,15 @@
 	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.js"></script>
 <script
 	src='<c:url value = "/template/static/libs/angular-material.min.js"/>'></script>
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular.js"></script>
+
+<!-- Bootstrap 4 -->
+	<script src='<c:url value = "/template/static/libs/jquery-3.5.1.slim.min.js"/>'></script>
+	<script src='<c:url value = "/template/static/libs/bootstrap.min.js"/>'></script>
+	<script src='<c:url value = "/template/static/libs/popper.min.js"/>'></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script src='<c:url value = "/template/static/libs/jquery.twbsPagination.js"/>'></script>	 
 </head>
 <body ng-app="myApp" ng-controller="appCtrl" ng-cloak>
 	<div class="dashboard">
@@ -107,16 +116,16 @@
 		</div>
 	</div>
 
-	<!-- Bootstrap 4 -->
-	<script
-		src='<c:url value = "/template/static/libs/jquery-3.5.1.slim.min.js"/>'></script>
-	<script src='<c:url value = "/template/static/libs/bootstrap.min.js"/>'></script>
-	<script src='<c:url value = "/template/static/libs/popper.min.js"/>'></script>
+	
 	<!-- JavaScript -->
 	<script src='<c:url value = "/template/static/js/dashboard.js"/>'></script>
 	<script src='<c:url value = "/template/static/js/employee.js"/>'></script>
 	<script src='<c:url value = "/template/static/js/team.js"/>'></script>
 	<script src='<c:url value = "/template/static/js/position.js"/>'></script>
 	<script src='<c:url value = "/template/static/js/function.js"/>'></script>
+	<<%-- script
+		src='<c:url value = "/template/static/libs/app.js"/>'></script> --%>
+		<script
+		src='<c:url value = "/template/static/libs/checklist-model.js"/>'></script> 
 </body>
 </html>
