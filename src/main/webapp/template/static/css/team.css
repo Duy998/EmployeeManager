@@ -153,4 +153,127 @@ button.btn-edit {
 button.btn-edit:hover {
 	color: red;
 }
-/* ============================= */
+/* ==============editteam=============== */
+.form__editteam {
+	background: #ccdaff7a;
+	min-height: 80vh;
+}
+
+.form__editteam-title {
+	text-align: center;
+	padding-top: 1rem;
+	color: #008fd8;
+}
+
+.form__editteam-body {
+	display: block;
+	width: 60rem;
+	margin-left: 0 auto;
+	/* margin: 0 auto; */
+	height: 5rem;
+	margin-left: 27rem;
+}
+
+.form__editteam-body-input {
+	position: relative;
+	height: inherit;
+}
+
+.form__editteam-body-input i {
+	position: absolute;
+	top: 10%;
+	left: 72%;
+	font-size: 30px;
+	color: #8686bf;
+}
+
+.form__editteam-body-input input {
+	width: inherit;
+	padding: 8px;
+	border-radius: 5px;
+	border: 1px solid #8e696952;
+}
+
+.form__editteam-body-input input:focus {
+	border: 1px solid red;
+}
+
+.form__editteam-submit {
+	/* margin: 0 auto; */
+	display: block;
+	width: 30rem;
+	margin-left: 30rem;
+}
+
+.form__editteam-submit a {
+	background: #e07a31;
+	width: 10rem;
+	border: none;
+	height: 3.4rem;
+	margin-left: 3rem;
+}
+/* ====================/edittem ========*/
+.team__infor-body {
+	background: #ccdaff7a;
+	min-height: 80vh;
+	position: relative;
+}
+
+.team__infor-sm9 {
+	position: absolute;
+	top: 0%;
+	right: 0%;
+	width: 60rem;
+	height: auto;
+}
+
+.infer__th {
+	text-align: center;
+}
+
+/* ====================infor ========*/
+
+/* ====================/infor=========*/
+.teamupdate__body.ng-scope {
+	min-height: 80vh;
+	background: aliceblue;
+}
+
+.teamupdate__form {
+	background: #e4e3ea;
+	width: 60rem;
+	margin-left: 17rem;
+	min-height: 50rem;
+}
+
+.teamupdate__form-firstname {
+	height: 6rem;
+}
+
+.teamupdate__form-firstname label {
+	color: #3e3caf;
+	padding-top: 4px;
+	padding-left: 1px;
+	display: block;
+	font-size: 17px;
+}
+
+.teamupdate__form-firstname input {
+	width: 56rem;
+	border: 1px solid #c3a0a0;
+	height: 5rem;
+	border-radius: 5px;
+}
+
+.teamupdate__form-listmanager select{
+    width: 10rem;
+    margin-top: 5rem;
+}
+
+.teamupdate__form-listusers{
+	
+}
+
+.teamupdate__form-listusers-checked{
+	
+}

@@ -1,28 +1,13 @@
-
-<div id="add" tabindex="-1" role="dialog"
-	aria-labelledby="add-modal-label">
-	<div class="modal-dialog" role="document">
-		<div class="modal-content">
-			<form class="form-horizontal" id="add-form">
-				<div class="modal-header">
-					<h4 class="modal-title" id="add-modal-label">Update new Team
-						{{loadbyid.nameTeamoooooo}}</h4>
-
-				</div>
-				<div class="modal-body">
-					<div class="form-group">
-						<label for="add-firstname" class="col-sm-2 control-label">Firstname</label>
-						<div class="col-sm-10">
-							<div>
-
-								<input type="text" ng-model="idTeam"
-									ng-value="loadupdateteam.idTeam" /> <input type="text"
-									ng-model="nameTeam" ng-value="loadupdateteam.nameTeam" />
-							</div>
-
-						</div>
+<div class="teamupdate__body">
+	<div class="teamupdate__form">
+		<div class="teamupdate__form-canh">
+			<form class="" id="">
+				<div class="teamupdate__form-main">
+					<div class="form-group teamupdate__form-firstname">
+						<label>Firstname</label> <input type="text" ng-model="nameTeam"
+							ng-model="nameTeam" ng-value="loadupdateteam.nameTeam" />
 					</div>
-					<div class="form-group">
+					<div class="form-group teamupdate__form-listmanager">
 						<select ng-model="managername">
 							<option ng-repeat="option in loadupdateteam.listmanager"
 								value="{{option.name}}">{{option.name}}</option>
@@ -30,18 +15,21 @@
 
 					</div>
 
-
-					<div class="form-group">
+					<div class="form-group teamupdate__form-listusers">
 						<div ng-repeat="option in loadupdateteam.listallUser">
-							<input type="checkbox" ng-checked="{{option.checked}}"
-								ng-model="option.Selected"> <label for="vehicle1">
-								{{option.name}}</label><br>
+							<div class="teamupdate__form-listusers-checked form-check-inline">
+								<label class="form-check-label" for="check2"> <input
+									type="checkbox" ng-checked="{{option.checked}}"
+									ng-model="option.Selected" class="form-check-input">
+									{{option.name}}
+								</label><br>
+							</div>
 						</div>
 					</div>
 					</md-select>
 					{{result}}
 				</div>
-				<div class="modal-footer">
+				<div>
 					<button type="button" value="Get" class="btn btn-primary"
 						ng-click="GetValue()">Update changes</button>
 				</div>
@@ -49,3 +37,5 @@
 		</div>
 	</div>
 </div>
+
+

@@ -40,7 +40,7 @@ public class TeamRequestService implements ITeamRequestService{
 					dto.setChecked("true");
 				}	
 			}
-			if(userEntity.getPosition().getName().equals("manager")) {
+			if(userEntity.getPosition().getName().equals("MANAGER")) {
 				namemanagers.add(dto);
 			}
 			usertdto.add(dto);
