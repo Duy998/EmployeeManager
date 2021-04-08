@@ -33,6 +33,11 @@ public class UserAPI {
 		iuserService.saveUser(dto);
 	}
 
+	@GetMapping("/{id}")
+	public UserDTO getEmployeesById(@PathVariable Long id) {
+		return iuserService.findById(id);
+	}
+
 	@PutMapping("/{id}")
 	public UserDTO updateUser(@RequestBody UserDTO dto, @PathVariable Long id) {
 		UserDTO userDTO = new UserDTO();

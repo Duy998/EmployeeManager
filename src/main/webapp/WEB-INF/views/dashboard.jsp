@@ -116,6 +116,7 @@
 	<script src='<c:url value = "/template/static/js/position.js"/>'></script>
 	<script src='<c:url value = "/template/static/js/function.js"/>'></script>
 	<script src='<c:url value = "/template/static/js/addemployee.js"/>'></script>
+	<script src='<c:url value = "/template/static/js/detailemployee.js"/>'></script>
 
 	<!-- File -->
 

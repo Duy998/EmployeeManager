@@ -9,13 +9,13 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "position")
-public class PositionEntity extends BaseEntity {
+@Table(name = "role")
+public class RoleEntity extends BaseEntity {
 
 	@Column
 	private String name;
 
-	@OneToMany(mappedBy = "position")
+	@OneToMany(mappedBy = "role")
 	private List<UserEntity> users = new ArrayList<>();
 
 	public String getName() {

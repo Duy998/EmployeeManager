@@ -12,27 +12,27 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import employee.com.DTO.PositionDTO;
+import employee.com.DTO.RoleDTO;
 import employee.com.service.IPositionService;
 
 @RestController
 @RequestMapping("/api/position")
-public class PositionAPI {
+public class RoleAPI {
 	@Autowired
 	private IPositionService iPositionService;
 
 	@GetMapping
-	public List<PositionDTO> getPosition() {
+	public List<RoleDTO> getPosition() {
 		return iPositionService.findAll();
 	}
 
 	@PostMapping
-	public void insertPosition(@RequestBody PositionDTO positionDTO) {
+	public void insertPosition(@RequestBody RoleDTO positionDTO) {
 		iPositionService.savePosition(positionDTO);
 	}
 
 	@PutMapping("/{id}")
-	public void updatePosition(@RequestBody PositionDTO dto, @PathVariable Long id) {
+	public void updatePosition(@RequestBody RoleDTO dto, @PathVariable Long id) {
 		iPositionService.updatePosition(dto, id);
 	}
 

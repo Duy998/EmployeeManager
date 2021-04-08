@@ -25,5 +25,13 @@ public class AdvantageEntity extends BaseEntity{
 	@JoinColumn(name = "userid")
 	private UserEntity user;
 
+	public UserEntity getUser() {
+		return user;
+	}
+
+	public void setUser(UserEntity user) {
+		this.user = user;
+	}
+
 	
 }

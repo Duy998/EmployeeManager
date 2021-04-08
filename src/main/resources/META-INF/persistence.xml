@@ -5,7 +5,7 @@
         <class>employee.com.entity.TechnicalEntity</class>
         <class>employee.com.entity.AdvantageEntity</class>
         <class>employee.com.entity.TeamEntity</class>
-        <class>employee.com.entity.PositionEntity</class>
+        <class>employee.com.entity.RoleEntity</class>
     </persistence-unit>
 </persistence>
 

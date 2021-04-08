@@ -38,6 +38,14 @@ public class TechnicalEntity extends BaseEntity{
 	public void setLevel(String level) {
 		this.level = level;
 	}
+
+	public UserEntity getUser() {
+		return user;
+	}
+
+	public void setUser(UserEntity user) {
+		this.user = user;
+	}
 	
 	
 	

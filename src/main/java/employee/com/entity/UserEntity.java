@@ -44,12 +44,12 @@ public class UserEntity extends BaseEntity {
 
 	// with PositionEntity
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "positionid")
-	private PositionEntity position;
+	@JoinColumn(name = "roleId")
+	private RoleEntity role;
 
 	// with TeamEntity
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "teamid")
+	@JoinColumn(name = "teamId")
 	private TeamEntity team;
 
 	@OneToMany(mappedBy = "user")
@@ -130,12 +130,12 @@ public class UserEntity extends BaseEntity {
 		this.sex = sex;
 	}
 
-	public PositionEntity getPosition() {
-		return position;
+	public RoleEntity getPosition() {
+		return role;
 	}
 
-	public void setPosition(PositionEntity position) {
-		this.position = position;
+	public void setPosition(RoleEntity role) {
+		this.role = role;
 	}
 
 	public TeamEntity getTeam() {

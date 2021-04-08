@@ -5,6 +5,9 @@ angular.module('myApp').config(function($routeProvider) {
 	$routeProvider.when('/', {
 		templateUrl: 'file/employee/defaultemployee.html',
 		controller: 'employeeCtrl'
+	}).when('/id=:id', {
+		templateUrl: 'file/employee/detailsemployee.html',
+		controller: 'detailEmployeeCtrl'
 	});
 }).controller('employeeCtrl', function($scope, $http) {
 	$scope.sortType = 'name';
@@ -195,4 +198,18 @@ angular.module('myApp').config(function($routeProvider) {
 		$scope.employeeForm.status = "";
 		$scope.employeeForm.sex = "";
 	};
+
+	// Details employee
+	$scope.getEmployeeDetail = function(x) {
+		$http({
+			method: 'GET',
+			url: '/EmployeeManager/api/user/' + x.id
+		}).then(function(res) {
+			location.href = "/EmployeeManager/home#!/id=" + x.id;
+			sessionStorage.setItem("detailuser", JSON.stringify(res.data));
+		}, function(res) {
+			console.log("Error: ");
+		});
+	}
+
 });

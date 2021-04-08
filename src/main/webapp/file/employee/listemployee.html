@@ -58,7 +58,7 @@
 				ng-repeat="x in employees | orderBy:sortType:sortReverse | filter:search">
 				<td><md-checkbox ng-click="toggle(x, selectCheck)"
 						ng-checked="exists(x, selectCheck)"> </md-checkbox></td>
-				<td><a href="#">{{ x.name }}</a></td>
+				<td><a ng-click=getEmployeeDetail(x)>{{ x.name }}</a></td>
 				<td>{{ x.age }}</td>
 				<td>{{ x.nickName}}</td>
 				<td>{{ x.nameRole}}</td>

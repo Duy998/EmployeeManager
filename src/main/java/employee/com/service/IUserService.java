@@ -28,4 +28,6 @@ public interface IUserService {
 
 	// Convert password to MD5
 	String getMD5(String password);
+
+	UserDTO findById(Long id);
 }

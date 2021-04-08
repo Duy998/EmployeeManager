@@ -9,9 +9,9 @@ import org.springframework.util.DigestUtils;
 
 import employee.com.DTO.UserDTO;
 import employee.com.converter.UserConverter;
-import employee.com.entity.PositionEntity;
+import employee.com.entity.RoleEntity;
 import employee.com.entity.UserEntity;
-import employee.com.repository.PositionRepository;
+import employee.com.repository.RoleRepository;
 import employee.com.repository.UserRepository;
 import employee.com.service.IUserService;
 
@@ -25,7 +25,7 @@ public class UserService implements IUserService {
 	private UserConverter userConverter;
 
 	@Autowired
-	private PositionRepository positionRepository;
+	private RoleRepository positionRepository;
 
 	@Override
 	public List<UserDTO> findAll() {
@@ -39,12 +39,20 @@ public class UserService implements IUserService {
 		}
 		return result;
 	}
+	
+	@Override
+	public UserDTO findById(Long id) {
+		UserEntity entity = userRepository.findOne(id);
+		UserDTO dto = new UserDTO();
+		dto = userConverter.toDto(entity);
+		return dto;
+	}
 
 	@Override
 	public void saveUser(UserDTO dto) {
 		UserEntity userEntity = new UserEntity();
 		userEntity = userConverter.toEntity(dto);
-		PositionEntity position = positionRepository.findOne(dto.getIdRole());
+		RoleEntity position = positionRepository.findOne(dto.getIdRole());
 		userEntity.setPassword(getMD5(dto.getPassword()));
 		userEntity.setPosition(position);
 		userRepository.save(userEntity);
@@ -64,7 +72,7 @@ public class UserService implements IUserService {
 		userEntity = userRepository.findOne(id);
 		userEntity = userConverter.toEntity(dto);
 		userEntity.setId(id);
-		PositionEntity positionEntity = positionRepository.findOne(dto.getIdRole());
+		RoleEntity positionEntity = positionRepository.findOne(dto.getIdRole());
 		userEntity.setPosition(positionEntity);
 		UserDTO userDTO = new UserDTO();
 		userRepository.save(userEntity);

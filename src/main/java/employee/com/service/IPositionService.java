@@ -2,16 +2,16 @@ package employee.com.service;
 
 import java.util.List;
 
-import employee.com.DTO.PositionDTO;
+import employee.com.DTO.RoleDTO;
 
 public interface IPositionService {
-	List<PositionDTO> findAll();
+	List<RoleDTO> findAll();
 
-	 void savePosition(PositionDTO dto); 
+	 void savePosition(RoleDTO dto); 
 
 	void deletePosition(Long id);
 
-	void updatePosition(PositionDTO dto, Long id);
+	void updatePosition(RoleDTO dto, Long id);
 
 	void deleteListUser(Long[] ids);
 }

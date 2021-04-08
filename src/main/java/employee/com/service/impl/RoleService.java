@@ -6,23 +6,23 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import employee.com.DTO.PositionDTO;
-import employee.com.entity.PositionEntity;
-import employee.com.repository.PositionRepository;
+import employee.com.DTO.RoleDTO;
+import employee.com.entity.RoleEntity;
+import employee.com.repository.RoleRepository;
 import employee.com.service.IPositionService;
 
 @Service
-public class PositionService implements IPositionService {
+public class RoleService implements IPositionService {
 
 	@Autowired
-	private PositionRepository positionRepository;
+	private RoleRepository positionRepository;
 
 	@Override
-	public List<PositionDTO> findAll() {
-		List<PositionDTO> result = new ArrayList<>();
-		List<PositionEntity> entity = positionRepository.findAll();
-		for (PositionEntity positionEntity : entity) {
-			PositionDTO dto = new PositionDTO();
+	public List<RoleDTO> findAll() {
+		List<RoleDTO> result = new ArrayList<>();
+		List<RoleEntity> entity = positionRepository.findAll();
+		for (RoleEntity positionEntity : entity) {
+			RoleDTO dto = new RoleDTO();
 			dto.setId(positionEntity.getId());
 			dto.setName(positionEntity.getName());
 			result.add(dto);
@@ -31,9 +31,9 @@ public class PositionService implements IPositionService {
 	}
 
 	@Override
-	public void savePosition(PositionDTO dto) {
+	public void savePosition(RoleDTO dto) {
 
-		PositionEntity entity = new PositionEntity();
+		RoleEntity entity = new RoleEntity();
 		entity.setName(dto.getName());
 		positionRepository.save(entity);
 
@@ -41,14 +41,14 @@ public class PositionService implements IPositionService {
 
 	@Override
 	public void deletePosition(Long id) {
-		PositionEntity positionEntity = new PositionEntity();
+		RoleEntity positionEntity = new RoleEntity();
 		positionEntity.setId(id);
 		positionRepository.delete(id);
 	}
 
 	@Override
-	public void updatePosition(PositionDTO dto, Long id) {
-		PositionEntity entity = new PositionEntity();
+	public void updatePosition(RoleDTO dto, Long id) {
+		RoleEntity entity = new RoleEntity();
 		entity.setName(dto.getName());
 		entity.setId(id);
 		positionRepository.save(entity);

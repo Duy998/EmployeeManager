@@ -1,6 +1,6 @@
 package employee.com.DTO;
 
-public class PositionDTO extends AbstactDTO<PositionDTO>{
+public class RoleDTO extends AbstactDTO<RoleDTO>{
 	private String name;
 
 	public String getName() {
