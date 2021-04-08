@@ -23,6 +23,7 @@
 		z-index: 1;
 	}
 	.dashboard__main .main {
+		min-height: 56em;
 		margin: 5em 1em 4em 1em;
 	}
 	.navbars__menu__open, .navbars__menu__close {
@@ -207,13 +208,31 @@ body {
 	position: absolute;
 	right: 0;
 	padding: 5px 10px;
+	color: #4e73df;
 }
 
 .default__header__search input {
 	width: 100%;
-	padding: 5px;
-	border-radius: 10px;
-	border: 1px solid;
+	padding: 7px 10px;
+	border: none;
+	color: slategrey;
+	border-bottom: 2px solid #4e73df;
+}
+
+.default__header__search input:focus {
+	outline: none;
+}
+
+.default__header__search select {
+	width: 100%;
+	padding: 7px 10px;
+	border: none;
+	color: slategrey;
+	border-bottom: 2px solid #4e73df;
+}
+
+.default__header__search select:focus {
+	outline: none;
 }
 
 .default__header__icon {

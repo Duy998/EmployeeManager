@@ -35,17 +35,16 @@ public class Teamservice implements ITeamService {
 	private TeamConverter teamconverter;
 
 	@Override
-	public TeamDTO findAll(int page,int limit) {
-		
-		
+	public TeamDTO findAll(int page, int limit) {
+
 		List<TeamEntity> entitys = teamrepository.findAll();
-		
+
 		TeamDTO result = new TeamDTO();
 		List<TeamDTO> listteam = new ArrayList<>();
 		for (TeamEntity team : entitys) {
 			TeamDTO teamDTO = teamconverter.todto(team);
 			int count = 0;
-			if(team.getNameManager() != null) {
+			if (team.getNameManager() != null) {
 				count++;
 			}
 			teamDTO.setNumber(team.getUsers().size() + count);
@@ -55,20 +54,20 @@ public class Teamservice implements ITeamService {
 		result.setPage(page);
 		return result;
 	}
-	@Override
-	public TeamDTO InsertTeam(TeamDTO dto) {	
-		return teamconverter.todto(teamrepository.save(teamconverter.toentity(dto)));
-		
-	}
 
+	@Override
+	public TeamDTO InsertTeam(TeamDTO dto) {
+		return teamconverter.todto(teamrepository.save(teamconverter.toentity(dto)));
+
+	}
 
 	@Override
 	@Transactional
-	public void deleteTeam(Long[] ids) {	
+	public void deleteTeam(Long[] ids) {
 		for (Long id : ids) {
-			//update by teamid ve null
+			// update by teamid ve null
 			List<UserEntity> users = userrepository.findByTeam_id(id);
-			for (UserEntity user  : users) {
+			for (UserEntity user : users) {
 				user.setTeam(null);
 				userrepository.save(user);
 			}
@@ -87,7 +86,7 @@ public class Teamservice implements ITeamService {
 		dto.setUsers(userdto);
 		return dto;
 	}
-	
+
 	@Override
 	public TeamDTO Inforteam(Long id) {
 		TeamEntity result = teamrepository.findOne(id);
@@ -101,11 +100,10 @@ public class Teamservice implements ITeamService {
 			listteam.add(userDTO);
 		}
 		dto.setUsers(listteam);
-		
+
 		return dto;
 	}
-	
-	
+
 	@Override
 	@Transactional
 	public TeamDTO UpdateTeam(TeamRrequest dto) {
@@ -114,15 +112,15 @@ public class Teamservice implements ITeamService {
 		result.setName(dto.getNameTeam());
 		result.setNameManager(dto.getManagername());
 		for (Long iduser : dto.getCheckeds()) {
-			UserEntity userEntity =	userrepository.findOne(iduser);
+			UserEntity userEntity = userrepository.findOne(iduser);
 			userEntity.setTeam(result);
 			userrepository.save(userEntity);
 		}
-		
+
 		result.setNumber(dto.getCheckeds().length + 1);
 		return teamconverter.todto(teamrepository.save(result));
 	}
-	
+
 	@Override
 	public int getTotalItem() {
 		return (int) userrepository.count();

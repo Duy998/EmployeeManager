@@ -28,6 +28,4 @@ public interface IUserService {
 
 	// Convert password to MD5
 	String getMD5(String password);
-
-	String getPass(String password);
 }

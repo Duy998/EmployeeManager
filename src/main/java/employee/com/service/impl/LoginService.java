@@ -30,7 +30,12 @@ public class LoginService implements ILoginService {
 	// Function login
 	@Override
 	public UserDTO loginPage(String email, String password) {
-		String getPass = iuserService.getMD5(password);
+		String getPass;
+		if (password.length() == 32) {
+			getPass = password;
+		} else {
+			getPass = iuserService.getMD5(password);
+		}
 		UserEntity userEntity = loginRepository.findByEmailAndPassword(email, getPass);
 		UserDTO userDTO = new UserDTO();
 		if (userEntity != null && userEntity.getStatus() == 1) {
@@ -45,7 +50,12 @@ public class LoginService implements ILoginService {
 	// Function create password
 	@Override
 	public UserDTO createPassword(String email, String password, String newPassword) {
-		String oldPass = iuserService.getMD5(password);
+		String oldPass;
+		if (password.length() == 32) {
+			oldPass = password;
+		} else {
+			oldPass = iuserService.getMD5(password);
+		}
 		UserEntity userEntity = loginRepository.findByEmailAndPassword(email, oldPass);
 		UserDTO userDTO = new UserDTO();
 		if (userEntity != null && userEntity.getStatus() == 1) {
@@ -65,8 +75,9 @@ public class LoginService implements ILoginService {
 		UserEntity userEntity = loginRepository.findByEmail(email);
 		UserDTO userDTO = new UserDTO();
 		if (userEntity != null && userEntity.getStatus() == 1) {
-			String password = iuserService.getPass(userEntity.getPassword());
-			senderEmail("phamhongnghia13579@gmail.com", email, "Forgot password", password);
+			senderEmail("phamhongnghia13579@gmail.com", email, "Forgot password",
+					"link change password: http://localhost:8080/EmployeeManager/forgot?email=" + email + "&password="
+							+ userEntity.getPassword());
 			userDTO.setMessage("true");
 		} else {
 			userDTO.setMessage("false");

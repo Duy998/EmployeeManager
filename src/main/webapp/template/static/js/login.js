@@ -38,7 +38,7 @@ angular.module('loginApp', ['ngSanitize', 'ngMaterial']).controller('loginCtrl',
 				}).then(function(response) {
 					if (response.data.message == "true") {
 						location.href = "http://localhost:8080/EmployeeManager/home";
-						sessionStorage.setItem("user", JSON.stringify(response.data));
+						localStorage.setItem("user", JSON.stringify(response.data));
 						$scope.error = true;
 					} else {
 						$scope.error = false;
@@ -58,23 +58,29 @@ angular.module('loginApp', ['ngSanitize', 'ngMaterial']).controller('loginCtrl',
 		}
 	}
 	$scope.onSubmitForgot = function(email) {
+		$scope.error = false;
+		$scope.success = {
+			'color': 'green'
+		};
+		$scope.alert = "Please, wait a few minutes !";
 		if (check(email) == true) {
 			$http({
 				url: "http://localhost:8080/EmployeeManager/api/sendemail?email=" + email,
 				method: "POST"
 			}).then(function(response) {
-				if (response.data.message == "true") { 
+				if (response.data.message == "true") {
 					$scope.error = false;
 					$scope.success = {
 						'color': 'green'
 					};
 					$scope.alert = "Please, check your email !";
+					let list = document.getElementsByTagName('input');
 					for (let i = 0; i < list.length; i++) {
 						if (list[i] != document.querySelector('input[type="button"]')) {
 							list[i].value = "";
 						}
 					}
-				}else{
+				} else {
 					$scope.error = false;
 					$scope.success = {};
 					$scope.alert = "Invalid email !";

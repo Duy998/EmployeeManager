@@ -15,15 +15,14 @@ import employee.com.repository.TeamRepository;
 import employee.com.repository.UserRepository;
 import employee.com.service.ITeamRequestService;
 
-
 @Service
-public class TeamRequestService implements ITeamRequestService{
+public class TeamRequestService implements ITeamRequestService {
 	@Autowired
 	private UserRepository userrepository;
-	
+
 	@Autowired
 	private UserConverter userconverter;
-	
+
 	@Autowired
 	private TeamRepository teamrepository;
 
@@ -32,15 +31,15 @@ public class TeamRequestService implements ITeamRequestService{
 		TeamRrequest result = new TeamRrequest();
 		List<UserEntity> userentity = userrepository.findAll();
 		List<UserDTO> usertdto = new ArrayList<UserDTO>();
-		List<UserDTO> namemanagers = new  ArrayList<>();
+		List<UserDTO> namemanagers = new ArrayList<>();
 		for (UserEntity userEntity : userentity) {
 			UserDTO dto = userconverter.toDto(userEntity);
-			if(userEntity.getTeam() != null) {
-				if(userEntity.getTeam().getId() == idteam) {
+			if (userEntity.getTeam() != null) {
+				if (userEntity.getTeam().getId() == idteam) {
 					dto.setChecked("true");
-				}	
+				}
 			}
-			if(userEntity.getPosition().getName().equals("MANAGER")) {
+			if (userEntity.getPosition().getName().equals("MANAGER")) {
 				namemanagers.add(dto);
 			}
 			usertdto.add(dto);
@@ -50,7 +49,7 @@ public class TeamRequestService implements ITeamRequestService{
 		result.setIdTeam(idteam);
 		TeamEntity teamrntity = teamrepository.findOne(idteam);
 		result.setNameTeam(teamrntity.getName());
-		
+
 		return result;
 	}
 

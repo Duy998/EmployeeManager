@@ -148,7 +148,7 @@ angular.module('myApp').config(function($routeProvider) {
 	}
 	$scope.managername;
 	/*=updateTeam=*/
-	
+
 	$scope.GetValue = function() {
 
 		$scope.message = [];

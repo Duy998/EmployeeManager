@@ -132,10 +132,4 @@ public class UserService implements IUserService {
 		return hashPass;
 	}
 
-	@Override
-	public String getPass(String getMd5) {
-		byte[] getByte = DigestUtils.md5Digest(getMd5.getBytes());
-		return getByte.toString();
-	}
-
 }

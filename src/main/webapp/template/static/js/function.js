@@ -19,7 +19,7 @@ for (let i = 0; i < listItem.length; i++) {
 // Event dashboard
 
 function logoutEvent() {
-	sessionStorage.clear();
+	localStorage.clear();
 	location.href = "http://localhost:8080/EmployeeManager/login";
 }
 

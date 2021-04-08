@@ -86,7 +86,7 @@
 					<i class="fas fa-bars"></i>
 				</div>
 				<div>
-					<label class="m-0 mr-3">{{dataUser.nickName}}</label> <img
+					<label class="m-0 mr-3">{{dataUser.name}}</label> <img
 						src="<c:url value="/template/static/images/user/employee.png"/>"
 						alt="employee">
 				</div>
