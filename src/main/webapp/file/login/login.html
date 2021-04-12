@@ -8,7 +8,7 @@
 		<div class="form__icon" ng-click="hideShow()" ng-bind-html="icon"></div>
 	</div>
 	<input type="button" value="Login" ng-click="onSubmit(email,password)">
-	<div class="error" ng-hide="error">Invalid username or password</div>
+	<div class="error" ng-hide="error">{{alert}}</div>
 </form>
 <div class="form__forgot text-center">
 	<a href="#" ng-click="loadIndex(1)">Forgot password ?</a>

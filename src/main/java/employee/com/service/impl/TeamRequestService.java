@@ -28,28 +28,41 @@ public class TeamRequestService implements ITeamRequestService{
 	private TeamRepository teamrepository;
 
 	@Override
-	public TeamRrequest findAll(Long idteam) {
+	public TeamRrequest findAll(Long teamId) {
 		TeamRrequest result = new TeamRrequest();
+		// find all users
 		List<UserEntity> userentity = userrepository.findAll();
-		List<UserDTO> usertdto = new ArrayList<UserDTO>();
+		//find one team by teamId
+		TeamEntity teamentity = teamrepository.findOne(teamId);
+		
+		List<UserDTO> usertdto = new ArrayList<>();
 		List<UserDTO> namemanagers = new  ArrayList<>();
+		
+		// display user where role = MANAGER and teamId != null
 		for (UserEntity userEntity : userentity) {
-			UserDTO dto = userconverter.todto(userEntity);
+			UserDTO dto = userconverter.toDto(userEntity);
+			//check teamId -> true
 			if(userEntity.getTeam() != null) {
-				if(userEntity.getTeam().getId() == idteam) {
+				if(userEntity.getTeam().getId() == teamId) {
 					dto.setChecked("true");
 				}	
 			}
-			if(userEntity.getPosition().getName().equals("manager")) {
+			//checked positionId = teamId
+			if(userEntity.getPosition().getName().equals("MANAGER")) {
 				namemanagers.add(dto);
 			}
-			usertdto.add(dto);
+			if(!userEntity.getPosition().getName().equals("MANAGER")) {
+				usertdto.add(dto);
+			}
+			
 		}
+		
 		result.setListallUser(usertdto);
 		result.setListmanager(namemanagers);
-		result.setIdTeam(idteam);
-		TeamEntity teamrntity = teamrepository.findOne(idteam);
-		result.setNameTeam(teamrntity.getName());
+		result.setIdTeam(teamId);
+		result.setManagername(teamentity.getNameManager());
+		//get nameTeam
+		result.setNameTeam(teamentity.getName());
 		
 		return result;
 	}

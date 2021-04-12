@@ -43,6 +43,7 @@
 		ng-cloak>
 		<section class="form" ng-include="viewIndex"></section>
 	</div>
+	<script src="<c:url value="/template/static/js/config.js"/>"></script>
 	<script src="<c:url value="/template/static/js/login.js"/>"></script>
 </body>
 

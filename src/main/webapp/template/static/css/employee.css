@@ -1,0 +1,77 @@
+.list__Employee .employee_trash_square_circle {
+	margin: 8px 0px -12px 49px;
+}
+
+.list__Employee .employee_search {
+	margin: 9px 0px 0px 142px;
+	width: 357px;
+}
+
+.list__Employee .icon__search {
+	left: 608px;
+	position: absolute;
+	right: 0%;
+	color: black;
+	padding: 14px 9px;
+	margin: -1px 284px -1px 2px;
+}
+
+.list__Employee .employee_trash_square_circle .fas {
+	margin: 10px;
+}
+
+.list__Employee {
+	margin-top: 44px;
+}
+
+/* #main_add_employee input.ng-dirty {
+          border-bottom: 1px solid yellow;
+       }
+ 
+       #main_add_employee input.ng-invalid.ng-dirty {
+          border-bottom: 1px solid red;
+       }
+ 
+       #main_add_employee input.ng-valid.ng-dirty {
+          border-bottom: 1px solid green;
+       }
+ 
+       #main_add_employee input.ng-invalid-minlength.ng-dirty {
+          border-bottom: 1px solid blue;
+       }
+ 
+       #main_add_employee input.ng-invalid-maxlength.ng-dirty {
+          border-bottom: 1px solid blue;
+       }
+ 
+       #main_add_employee {
+          margin-left: 20px;
+          margin-right: 20px;
+       }
+ 
+       #main_add_employee form input[type=text],
+       #main_add_employee form input[type=email],
+       #main_add_employee form input[type=number],
+       #main_add_employee form input[type=password] {
+          width: 50%;
+          display: inline
+       }
+ 
+       #main_add_employee input[type=radio],
+       input[type=checkbox] {
+          margin: 0;
+       }
+ 
+       #main_add_employee input.mx-3 {
+     margin: 8px 7px 1px 25px;
+ }
+ 
+       #main_add_employee .form-group {
+          display: flex;
+          align-items: center;
+       }
+ 
+      #main_add_employee .form-horizontal .control-label {
+          margin: 0;
+          text-align: right;
+       } */

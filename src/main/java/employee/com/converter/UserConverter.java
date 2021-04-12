@@ -8,33 +8,35 @@ import employee.com.entity.UserEntity;
 @Component
 public class UserConverter {
 
-	public UserDTO todto(UserEntity entity) {
-		UserDTO result = new UserDTO();
-
-		result.setId(entity.getId());
-		result.setName(entity.getName());
-		result.setNickName(entity.getNickName());
-		result.setDayStart(entity.getDayStart());
-		result.seteMail(entity.getEmail());
-		result.setAge(entity.getAge());
-		result.setProFile(entity.getProfile());
-		result.setStatus(entity.getStatus());
-		result.setExPe(entity.getExPe());
-		return result;
+	// Converter Entity to DTO
+	public UserDTO toDto(UserEntity userEnity) {
+		UserDTO userDto = new UserDTO();
+		userDto.setId(userEnity.getId());
+		userDto.setAge(userEnity.getAge());
+		userDto.setDayStart(userEnity.getDayStart());
+		userDto.setEmail(userEnity.getEmail());
+		userDto.setName(userEnity.getName());
+		userDto.setNickName(userEnity.getNickName());
+		userDto.setProfile(userEnity.getProfile());
+		userDto.setStatus(userEnity.getStatus());
+		userDto.setSex(userEnity.getSex());
+		userDto.setIdRole(userEnity.getPosition().getId());
+		userDto.setRoleName(userEnity.getPosition().getName());
+		return userDto;
 	}
-	
-	public UserEntity toentity(UserDTO entity) {
-		UserEntity result = new UserEntity();
 
-		result.setId(entity.getId());
-		result.setName(entity.getName());
-		result.setNickName(entity.getNickName());
-		result.setDayStart(entity.getDayStart());
-		result.setEmail(entity.geteMail());
-		result.setAge(entity.getAge());
-		result.setProfile(entity.getProFile());
-		result.setStatus(entity.getStatus());
-
-		return result;
+	// Converter DTO to Entity
+	public UserEntity toEntity(UserDTO dto) {
+		UserEntity userentity = new UserEntity();
+		userentity.setAge(dto.getAge());
+		userentity.setDayStart(dto.getDayStart());
+		userentity.setEmail(dto.getEmail());
+		userentity.setPassword(dto.getPassword());
+		userentity.setName(dto.getName());
+		userentity.setNickName(dto.getNickName());
+		userentity.setProfile(dto.getProfile());
+		userentity.setSex(dto.getSex());
+		userentity.setStatus(dto.getStatus());
+		return userentity;
 	}
 }

@@ -1,0 +1,66 @@
+<form class="form-horizontal" id="add-form">
+	<div class="default__header">
+		<div class="default__header__name">
+			<h4 class="font-weight-bolder">{{nameDefault}}</h4>
+		</div>
+		<div class="default__header__search">
+			<input type="text" placeholder="search team" ng-model="search.$">
+			<a class="icon__search" href="#"><i class="fas fa-search"></i></a>
+		</div>
+		<div class="default__header__icon">
+
+			<button type="submit" ng-click="Delete()">
+				<i class="fas fa-trash-alt"></i>
+			</button>
+			<a href="#!AddTeam"> <i class="fas fa-plus-circle"></i>
+			</a>
+
+		</div>
+	</div>
+		<div style="height: 8rem">.
+			<div class="alert alert-success form__editteam-success" ng-show="showMe">
+			{{success}}
+		</div>
+		</div>
+	<table class="table">
+		<thead>
+			<tr class="tr_td_frirst">
+				<td style="width: 5%;"><input type="checkbox"
+					ng-change="checkAll(checkedAll)" ng-model="checkedAll" /></td>
+				<td ng-click="sortType = 'name'; sortReverse = !sortReverse">
+					Name team<span ng-show="sortType == 'name' && !sortReverse"></span>
+					<span ng-show="sortType == 'name' && sortReverse"></span>
+				</td>
+				<td ng-click="sortType = 'ex'; sortReverse = !sortReverse">
+					NameManager<span ng-show="sortType == 'ex' && !sortReverse"></span>
+				</td>
+				<td ng-click="sortType = 'position'; sortReverse = !sortReverse">
+					Number <span ng-show="sortType == 'position' && !sortReverse"></span>
+					<span ng-show="sortType == 'position' && sortReverse"></span>
+				</td>
+				<td>Edit</td>
+			</tr>
+		</thead>
+
+
+		<tbody>
+			<tr class="childTeam" ng-click="choseTeamEvent(x.name)"
+				ng-repeat="x in filteredTodos | orderBy:sortType:sortReverse | filter:search">
+				<td><input ng-change="checkItem(x.text.id, x.text.selected)"
+					type="checkbox" ng-model="x.text.selected" /></td>
+				<td ng-click="Information(x.text.id)">{{ x.text.name }}</td>
+				<td>{{ x.text.nameManager }}</td>
+				<td>{{ x.text.number}}</td>
+				<td><button ng-click="loadbyid(x.text.id)" class="btn-edit">
+						<i class="fas fa-edit"></i>
+					</button></td>
+			</tr>
+		</tbody>
+	</table>
+</form>
+<h1>{{filteredTodos.length}}</h1>
+<pagination ng-model="currentPage" total-items="todos.length"
+	max-size="maxSize" boundary-links="true"> </pagination>
+<div >
+	
+</div>

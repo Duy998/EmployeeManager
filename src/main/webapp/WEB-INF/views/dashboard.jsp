@@ -27,8 +27,8 @@
 	href='<c:url value = "/template/static/css/employee.css"/>'>
 <link rel="stylesheet" type="text/css"
 	href='<c:url value = "/template/static/css/team.css"/>'>
-
-	
+<link rel="stylesheet" type="text/css"
+	href='<c:url value = "/template/static/css/position.css"/>'>
 <!-- AngularJS (Default, animation, messages, sanitize, route) -->
 <script
 	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
@@ -44,17 +44,9 @@
 	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.js"></script>
 <script
 	src='<c:url value = "/template/static/libs/angular-material.min.js"/>'></script>
-	
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular.js"></script>
-
-<!-- Bootstrap 4 -->
-	<script src='<c:url value = "/template/static/libs/jquery-3.5.1.slim.min.js"/>'></script>
-	<script src='<c:url value = "/template/static/libs/bootstrap.min.js"/>'></script>
-	<script src='<c:url value = "/template/static/libs/popper.min.js"/>'></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-	<script src='<c:url value = "/template/static/libs/jquery.twbsPagination.js"/>'></script>	 
 </head>
-<body ng-app="myApp" ng-controller="appCtrl" ng-cloak>
+<body class="bg-secondary" ng-app="myApp" ng-controller="appCtrl"
+	ng-cloak>
 	<div class="dashboard">
 		<!-- Sidebar -->
 		<div class="navbars">
@@ -74,18 +66,14 @@
 			<!-- Nav item -->
 			<div class="navbars__body">
 				<ul>
-					<li><a ng-class="{currentNavItem : addEmployee}"
-						ng-click="currentNav('employee')" href="#!"><i
+					<li><a class="navItem currentNavItem" href="#!"><i
 							class="fas fa-chalkboard-teacher mr-3"></i>Employee</a></li>
-					<li><a ng-class="{currentNavItem : addTeam}"
-						ng-click="currentNav('team')" href="#!team"><i
+					<li><a class="navItem" href="#!team"><i
 							class="fas fa-users mr-3"></i>Team</a></li>
-					<li><a ng-class="{currentNavItem : addPosition}"
-						ng-click="currentNav('position')" href="#!position"><i
+					<li><a class="navItem" href="#!position"><i
 							class="fas fa-vote-yea mr-3"></i>Position</a></li>
-					<li><a class="logout__dashboard"
-						href=""><i
-							class="fas fa-sign-out-alt mr-3"></i>Logout</a></li>
+					<li><a class="navItem" class="logout__dashboard" href="#"
+						ng-click="logout()"><i class="fas fa-sign-out-alt mr-3"></i>Logout</a></li>
 				</ul>
 			</div>
 			<div class="navbars__footer"></div>
@@ -98,7 +86,7 @@
 					<i class="fas fa-bars"></i>
 				</div>
 				<div>
-					<label class="m-0 mr-3">{{username}}</label> <img
+					<label class="m-0 mr-3">{{dataUser.nickName}}</label> <img
 						src="<c:url value="/template/static/images/user/employee.png"/>"
 						alt="employee">
 				</div>
@@ -116,16 +104,28 @@
 		</div>
 	</div>
 
-	
+	<!-- Bootstrap 4 -->
+	<script
+		src='<c:url value = "/template/static/libs/jquery-3.5.1.slim.min.js"/>'></script>
+	<script src='<c:url value = "/template/static/libs/bootstrap.min.js"/>'></script>
+	<script src='<c:url value = "/template/static/libs/popper.min.js"/>'></script>
 	<!-- JavaScript -->
 	<script src='<c:url value = "/template/static/js/dashboard.js"/>'></script>
 	<script src='<c:url value = "/template/static/js/employee.js"/>'></script>
 	<script src='<c:url value = "/template/static/js/team.js"/>'></script>
 	<script src='<c:url value = "/template/static/js/position.js"/>'></script>
 	<script src='<c:url value = "/template/static/js/function.js"/>'></script>
-	<<%-- script
-		src='<c:url value = "/template/static/libs/app.js"/>'></script> --%>
-		<script
-		src='<c:url value = "/template/static/libs/checklist-model.js"/>'></script> 
+	<script src='<c:url value = "/template/static/js/addemployee.js"/>'></script>
+
+	<!-- File -->
+
+	<script
+		src='<c:url value = "/template/static/libs/checklist-model.js"/>'></script>
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+	<link rel="stylesheet"
+		href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" />
+	<script src="https://code.angularjs.org/1.3.15/angular.js"></script>
+	<script
+		src='<c:url value = "/template/static/libs/ui-bootstrap-tpls-0.12.1.min.js"/>'></script>
 </body>
 </html>

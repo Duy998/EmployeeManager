@@ -3,7 +3,6 @@ package employee.com.entity;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -39,9 +38,9 @@ public class UserEntity extends BaseEntity {
 
 	@Column(name = "password")
 	private String password;
-	
-	@Column(name = "expe")
-	private String exPe;
+
+	@Column(name = "sex")
+	private Integer sex;
 
 	// with PositionEntity
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -49,7 +48,7 @@ public class UserEntity extends BaseEntity {
 	private PositionEntity position;
 
 	// with TeamEntity
-	@ManyToOne()
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "teamid")
 	private TeamEntity team;
 
@@ -123,6 +122,14 @@ public class UserEntity extends BaseEntity {
 		this.password = password;
 	}
 
+	public Integer getSex() {
+		return sex;
+	}
+
+	public void setSex(Integer sex) {
+		this.sex = sex;
+	}
+
 	public PositionEntity getPosition() {
 		return position;
 	}
@@ -155,13 +162,4 @@ public class UserEntity extends BaseEntity {
 		this.advantages = advantages;
 	}
 
-	public String getExPe() {
-		return exPe;
-	}
-
-	public void setExPe(String exPe) {
-		this.exPe = exPe;
-	}
-
-	
 }

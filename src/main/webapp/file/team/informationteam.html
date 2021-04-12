@@ -1,0 +1,23 @@
+<div class="team__infor-body">
+	<div class="">
+		<h1>{{infornameitem.name}}</h1>
+	</div>
+	<div class="team__infor-sm9">
+		<table class="infor__table team__infor-table table">
+			<thead class="infer__thead team__infor-thead">
+				<tr class="infer__tr">
+					<th class="infer__th">Name</th>
+					<th class="infer__th">Position</th>
+					<th class="infer__th">experience</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="item in infornames.users" class="infor__tr" ng-click="informationitem(item.id)">
+					<td class="infor__td">{{item.name}}</td>
+					<td class="infor__td">{{item.posiTion}}</td>
+					<td class="infor__td">{{item.exPe}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

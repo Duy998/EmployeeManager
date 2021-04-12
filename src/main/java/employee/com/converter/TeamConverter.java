@@ -14,7 +14,11 @@ public class TeamConverter {
 			result.setId(entity.getId());
 		}
 		result.setName(entity.getName());
-		result.setNameManager(entity.getNameManager());
+		
+		if(entity.getNameManager() != null &&!entity.getNameManager().equals("---chon---")) {
+			result.setNameManager(entity.getNameManager());
+		}
+		result.setNumber(entity.getNumber());
 		return result;
 	}
 

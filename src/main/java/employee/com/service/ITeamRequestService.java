@@ -4,5 +4,5 @@ import employee.com.DTO.Request.TeamRrequest;
 
 public interface ITeamRequestService {
 
-	TeamRrequest findAll(Long idteam);
+	TeamRrequest findAll(Long teamId);
 }

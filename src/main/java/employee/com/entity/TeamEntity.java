@@ -22,7 +22,7 @@ public class TeamEntity extends BaseEntity{
 	private Integer number;
 	
 	
-	@OneToMany(mappedBy = "team",cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "team")
 	private List<UserEntity> users = new ArrayList<>();
 	
 

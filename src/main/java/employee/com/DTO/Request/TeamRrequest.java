@@ -11,7 +11,6 @@ public class TeamRrequest {
 	private String nameTeam;
 	private List<UserDTO> listallUser = new ArrayList<>();
 	private List<UserDTO> listmanager = new ArrayList<>();
-	
 	private String managername;
 	private Long[] checkeds;
 	private Long idTeam;
