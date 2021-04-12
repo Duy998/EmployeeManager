@@ -100,6 +100,14 @@
 	}
 }
 
+@media ( max-width : 1150px) {
+	.wrap__table {
+		position: relative;
+		overflow: hidden;
+		overflow-x: scroll;
+	}
+}
+
 /* CSS Body */
 body {
 	background: #3a3b3c59;
@@ -181,6 +189,8 @@ body {
 	background: white;
 	padding: 2em;
 	border-radius: 5px;
+	position: relative;
+	overflow: hidden;
 }
 
 /* default header main dashboard */
@@ -193,11 +203,13 @@ body {
 }
 
 .default__header__name {
-	width: 25%;
+	white-space: nowrap;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .default__header__search {
-	width: 50%;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -206,7 +218,7 @@ body {
 
 .default__header__search a {
 	position: absolute;
-	right: 0;
+	right: 5%;
 	padding: 5px 10px;
 	color: #4e73df;
 }
@@ -236,7 +248,6 @@ body {
 }
 
 .default__header__icon {
-	width: 25%;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -255,6 +266,50 @@ body {
 	font-size: 16px;
 }
 
+/* Default table */
+.table__default {
+	width: 100%;
+}
+
+.table__default thead {
+	background: #4e73df;
+	border: 1px solid #00000078;
+}
+
+.table__default tbody {
+	border: 1px solid #00000078;
+}
+
+.table__default thead tr td, .table__default tbody tr td {
+	padding: 1em;
+	text-align: center;
+	border-right: 1px solid #00000078;
+	white-space: nowrap;
+}
+
+.table__default thead tr td:focus, .table__default tbody tr td:focus {
+	outline: none;
+}
+
+.table__default thead tr td p:focus, .table__default tbody tr td p:focus
+	{
+	outline: none;
+}
+
+.table__default thead tr td {
+	color: white;
+}
+
+.table__default tbody tr td {
+	color: black;
+	border-bottom: 1px solid #00000078;
+}
+
+.table__default tbody tr td a {
+	cursor: pointer;
+}
+
+/* Footer */
 .footer {
 	position: absolute;
 	padding: 1em;

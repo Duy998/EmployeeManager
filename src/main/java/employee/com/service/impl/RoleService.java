@@ -8,19 +8,24 @@ import org.springframework.stereotype.Service;
 
 import employee.com.DTO.RoleDTO;
 import employee.com.entity.RoleEntity;
+import employee.com.entity.UserEntity;
 import employee.com.repository.RoleRepository;
+import employee.com.repository.UserRepository;
 import employee.com.service.IPositionService;
 
 @Service
 public class RoleService implements IPositionService {
 
 	@Autowired
-	private RoleRepository positionRepository;
+	private RoleRepository roleRepository;
+	
+	@Autowired
+	private UserRepository userRepository;
 
 	@Override
 	public List<RoleDTO> findAll() {
 		List<RoleDTO> result = new ArrayList<>();
-		List<RoleEntity> entity = positionRepository.findAll();
+		List<RoleEntity> entity = roleRepository.findAll();
 		for (RoleEntity positionEntity : entity) {
 			RoleDTO dto = new RoleDTO();
 			dto.setId(positionEntity.getId());
@@ -35,15 +40,23 @@ public class RoleService implements IPositionService {
 
 		RoleEntity entity = new RoleEntity();
 		entity.setName(dto.getName());
-		positionRepository.save(entity);
+		roleRepository.save(entity);
 
 	}
 
 	@Override
 	public void deletePosition(Long id) {
-		RoleEntity positionEntity = new RoleEntity();
-		positionEntity.setId(id);
-		positionRepository.delete(id);
+		RoleEntity roleEntity = new RoleEntity();
+		roleEntity = roleRepository.findOne(id);
+
+		for (UserEntity userentity : roleEntity.getUsers()) {
+			if (userentity.getPosition().getId() == id) {
+				roleEntity.setId((long) 1);
+				userentity.setPosition(roleEntity);
+				userRepository.save(userentity);
+			}
+		}
+		roleRepository.delete(id);
 	}
 
 	@Override
@@ -51,13 +64,13 @@ public class RoleService implements IPositionService {
 		RoleEntity entity = new RoleEntity();
 		entity.setName(dto.getName());
 		entity.setId(id);
-		positionRepository.save(entity);
+		roleRepository.save(entity);
 	}
 
 	@Override
 	public void deleteListUser(Long[] ids) {
 		for (Long id : ids) {
-			positionRepository.delete(id);
+			roleRepository.delete(id);
 		}
 	}
 

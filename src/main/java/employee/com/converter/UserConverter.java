@@ -20,8 +20,13 @@ public class UserConverter {
 		userDto.setProfile(userEnity.getProfile());
 		userDto.setStatus(userEnity.getStatus());
 		userDto.setSex(userEnity.getSex());
-		userDto.setIdRole(userEnity.getPosition().getId());
-		userDto.setRoleName(userEnity.getPosition().getName());
+		/*
+		 * userDto.setIdRole(userEnity.getPosition().getId());
+		 * userDto.setRoleName(userEnity.getPosition().getName()); 
+		 * 
+		 * cái này ở đâu vậy của who vậy YOU (Thành) You edit hả cái của I không có cái này
+		 * I edited YOU có j Ib Cho I
+		 */
 		return userDto;
 	}
 

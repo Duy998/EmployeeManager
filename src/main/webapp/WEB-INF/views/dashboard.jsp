@@ -26,6 +26,8 @@
 <link rel="stylesheet" type="text/css"
 	href='<c:url value = "/template/static/css/employee.css"/>'>
 <link rel="stylesheet" type="text/css"
+	href='<c:url value = "/template/static/css/detailemployee.css"/>'>
+<link rel="stylesheet" type="text/css"
 	href='<c:url value = "/template/static/css/team.css"/>'>
 <link rel="stylesheet" type="text/css"
 	href='<c:url value = "/template/static/css/position.css"/>'>
@@ -73,7 +75,8 @@
 					<li><a class="navItem" href="#!position"><i
 							class="fas fa-vote-yea mr-3"></i>Position</a></li>
 					<li><a class="navItem" class="logout__dashboard" href="#"
-						ng-click="logout()"><i class="fas fa-sign-out-alt mr-3"></i>Logout</a></li>
+						ng-click="showConfirm($event)"><i
+							class="fas fa-sign-out-alt mr-3"></i>Logout</a></li>
 				</ul>
 			</div>
 			<div class="navbars__footer"></div>
@@ -117,11 +120,9 @@
 	<script src='<c:url value = "/template/static/js/function.js"/>'></script>
 	<script src='<c:url value = "/template/static/js/addemployee.js"/>'></script>
 	<script src='<c:url value = "/template/static/js/detailemployee.js"/>'></script>
+	<script src='<c:url value = "/template/static/js/dirPagination.js"/>'></script>
 
 	<!-- File -->
-
-	<script
-		src='<c:url value = "/template/static/libs/checklist-model.js"/>'></script>
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 	<link rel="stylesheet"
 		href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" />

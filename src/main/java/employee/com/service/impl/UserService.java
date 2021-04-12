@@ -33,18 +33,40 @@ public class UserService implements IUserService {
 		List<UserEntity> entity = userRepository.findAll();
 		for (UserEntity userEntity : entity) {
 			UserDTO dto = new UserDTO();
-			dto = userConverter.toDto(userEntity);
-			dto.setRoleName(userEntity.getPosition().getName());
-			result.add(dto);
+			if (userEntity.getPosition() == null) {
+				dto = userConverter.toDto(userEntity);
+				dto.setRoleName("Intern");
+				result.add(dto);
+			} else {
+				dto = userConverter.toDto(userEntity);
+				dto.setRoleName(userEntity.getPosition().getName());
+				result.add(dto);
+			}
 		}
 		return result;
 	}
-	
+
+	@Override
+	public List<UserDTO> findAllById(long id) {
+		List<UserDTO> result = new ArrayList<UserDTO>();
+		List<UserEntity> entity = userRepository.findAll();
+		for (UserEntity userEntity : entity) {
+			if (userEntity.getPosition().getId() == id) {
+				UserDTO dto = new UserDTO();
+				dto = userConverter.toDto(userEntity);
+				dto.setRoleName(userEntity.getPosition().getName());
+				result.add(dto);
+			}
+		}
+		return result;
+	}
+
 	@Override
 	public UserDTO findById(Long id) {
 		UserEntity entity = userRepository.findOne(id);
 		UserDTO dto = new UserDTO();
 		dto = userConverter.toDto(entity);
+		dto.setTeam(entity.getTeam().getName());
 		return dto;
 	}
 
@@ -119,6 +141,11 @@ public class UserService implements IUserService {
 		return result;
 	}
 
+	@Override
+	public UserDTO findUserByUserid(Long userid) {
+		return userConverter.toDto(userRepository.findOne(userid));
+	}
+
 	// Check role user
 	@Override
 	public UserDTO checkRole(String email) {
@@ -138,6 +165,11 @@ public class UserService implements IUserService {
 	public String getMD5(String password) {
 		String hashPass = DigestUtils.md5DigestAsHex(password.getBytes()).toUpperCase();
 		return hashPass;
+	}
+
+	@Override
+	public UserDTO findByIdUserTeam(Long id) {
+		return userConverter.toDto(userRepository.findOne(id));
 	}
 
 }

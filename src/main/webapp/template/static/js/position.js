@@ -14,9 +14,9 @@ angular.module('myApp').config(function($routeProvider) {
 	$scope.checkPosition = checkAllScope;
 	$scope.changeViewPosition = changeViewEventPosition;
 	$scope.choseEventPosition = choseTeamPosition;
-
 	$scope.employees;
 	$scope.positiones;
+	$scope.listemployees;
 	$scope.positionForm = {
 		id: -1,
 		name: ""
@@ -28,15 +28,20 @@ angular.module('myApp').config(function($routeProvider) {
 		email: "",
 		status: "",
 		sex: "",
-		dayStart: ""
+		dayStart: "",
+		idRole: "",
+		nameRole: "",
 
 	};
 	//load data
 	_refreshPositionData();
-	_refreshEmployeeData();
+	_refreshEmployeeData(0);
 
-
-
+	$scope.chose = function() {
+		let obj = $scope.x;
+		console.log(obj.id);
+		_refreshEmployeeData(obj.id);
+	}
 
 	//Get Position
 	function _refreshPositionData() {
@@ -52,15 +57,15 @@ angular.module('myApp').config(function($routeProvider) {
 			}
 		);
 	}
-
+	//
 
 
 	//Get employee
 
-	function _refreshEmployeeData() {
+	function _refreshEmployeeData(id) {
 		$http({
 			method: 'GET',
-			url: '/EmployeeManager/api/user'
+			url: '/EmployeeManager/api/user/' + id,
 		}).then(
 			function(res) {
 				$scope.employees = res.data;
@@ -70,15 +75,20 @@ angular.module('myApp').config(function($routeProvider) {
 			}
 		);
 	}
-
+	/*$scope.arrlist;
+	$scope.arremployee = function() {
+		if (positiones.id == employees.idRole) {
+			arrlist = employees;
+		}
+	}*/
 
 	//
 	$scope.roleID;
-	$scope.deletePosition = function(roleID) {
-		console.log(roleID);
+	$scope.deletePosition = function(obj) {
+		console.log(obj.id);
 		$http({
 			method: 'DELETE',
-			url: '/EmployeeManager/api/position/' + roleID
+			url: '/EmployeeManager/api/position/delete?id=' + obj.id
 		}).then(_success, _error);
 	};
 	//===================================
@@ -168,4 +178,5 @@ angular.module('myApp').config(function($routeProvider) {
 
 
 	//
+
 });

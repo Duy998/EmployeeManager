@@ -1,90 +1,76 @@
-<div class="detail_employee">
-	<md-toolbar>
-	<h6>DETAIL EMPLOYEE</h6>
-	</md-toolbar>
-	<div id="function_add_delete">
-		<span
-			style="font-size: 2em; float: right; color: blue; padding-left: 15px;">
-			<i class="fas fa-save" ng-click="editUser(userDetail)"></i>
-		</span>
-	</div>
-	<div class="container" layout="row">
+<div class="employee-detail">
+	<button ng-click="backEmployee()" class="btn-back">
+		<i class="fas fa-arrow-left"></i>
+	</button>
+	<button ng-click="editUser(eachUser)" class="btn-edit">
+		<i class="fas fa-save"></i>
+	</button>
+
+	<div class="row employee__detail__tab">
 		<div
 			class="col-sm-3 d-flex align-items-center justify-content-center ">
-			<div class="listteam__khung text-center">
+			<div class="employee-detail__img text-center">
 				<img src="static/images/default/manager.png" alt=""
-					class="listteam__khung-img">
-				<h5 class="listteam__khung-name pt-3">name</h5>
-				<h6 class="listteam__khung-name">Manager</h6>
-				<h6 class="listteam__khung-name">12</h6>
+					class="employee-detail__img">
+				<h5 class="employee-detail__name pt-3">{{eachUser.name}}</h5>
+				<h6 class="employee-detail__nameRole">Manager</h6>
+				<h6 class="employee-detail__age">{{eachUser.sex}}</h6>
 			</div>
 		</div>
-		<div ng-cloak="" class="tabsCenterTabs">
-			<md-content id="content" flex> <md-tabs
-				class="md-primary" md-center-tabs=""> <!-- 	Tab DETAIL -->
-			<md-tab label="Detail"> <md-content class="md-padding">
-			<table id="employeedisplay" style="width: 100%">
+		<div class="col-sm-8">
+			<tabset> <tab heading="Detail">
+			<table class="employee-detail__tab--detail">
 				<tbody>
 					<tr>
 						<td>Name</td>
-						<td class="displaydetails"><input ng-model="userDetail.name">
-						</td>
+						<td class="employee-detail__tab--detail--display"><input
+							ng-model="eachUser.name"></td>
 					</tr>
 					<tr>
 						<td>NickName</td>
-						<td class="displaydetails"><input
-							ng-model="userDetail.nickName"></td>
+						<td class="employee-detail__tab--detail--display"><input
+							ng-model="eachUser.nickName"></td>
 					</tr>
 					<tr>
 						<td>Age</td>
-						<td class="displaydetails"><input ng-model="userDetail.age">
-						</td>
+						<td class="employee-detail__tab--detail--display"><input
+							ng-model="eachUser.age"></td>
 					</tr>
 					<tr>
 						<td>Position</td>
-						<td class="displaydetails"><select ng-model="selectDetail"
-							ng-options="user.name for user in userDetail">
-						</select></td>
+						<td class="employee-detail__tab--detail--display"></td>
 					</tr>
 					<tr>
 						<td>Email</td>
-						<td class="displaydetails"><input ng-model="userDetail.email">
-						</td>
+						<td class="employee-detail__tab--detail--display"><input
+							ng-model="eachUser.email"></td>
 					</tr>
 					<tr>
 						<td>Is active</td>
-						<td class="displaydetails"><input
-							ng-model="userDetail.status"></td>
+						<td class="employee-detail__tab--detail--display"><input
+							ng-model="eachUser.status"></td>
 					</tr>
 					<tr>
 						<td>Day start</td>
-						<td class="displaydetails"><md-datepicker
-								ng-model="userDetail.dayStart"></md-datepicker></td>
-					</tr>
-					<tr>
-						<td>IDROLE</td>
-						<td class="displaydetails"><input
-							ng-model="userDetail.idRole"></td>
+						<td class="employee-detail__tab--detail--display"><md-datepicker
+								ng-model="eachUser.dayStart"></md-datepicker></td>
 					</tr>
 					<tr>
 						<td>Team</td>
-						<td class="displaydetails"><Select>
-								<option>{{detailUser.message}}</option>
-								<option>V</option>
-						</Select></td>
+						<td class="employee-detail__tab--detail--display"><select
+							ng-model="eachUser.idTeam">
+								<option ng-repeat="team in selectTeam" ng-value="{{team.id}}"
+									ng-bind="team.name"></option>
+						</select></td>
 					</tr>
 				</tbody>
 			</table>
-			</md-content> </md-tab> <!-- 	Tab PROFILE --> <md-tab label="Profile"> <md-content
-				class="md-padding">
-			<div>
-				<p>{{detailUser.profile}}</p>
-			</div>
-			</md-content> </md-tab> <!-- 	Tab TECHNICAL --> <md-tab label="Technical"> <md-content
-				class="md-padding">
-			<div ng-controller="detail_techskill_Ctrl"
+			</tab> <tab heading="Profile">
+			<h6>{{eachUser.profile}}</h6>
+			</tab> <tab heading="Technical">
+			<div class="employee-detail__tab--technical"
 				style="display: flex; align-items: center; justify-content: center;">
-				<form>
+				<form class="d-flex">
 					<input type="text" placeholder="Add new skill technical"
 						ng-model="TechnicalForm.skill"> <input type="text"
 						placeholder="Level" ng-model="TechnicalForm.level"> <span
@@ -97,18 +83,17 @@
 				class="fas fa-trash-alt"
 				ng-click="deleteListTechnical(selectCheckTechnical)"></i>
 			</span>
-			<div ng-controller="detail_techskill_Ctrl">
+			<div>
 				<table class="table">
 					<thead>
-						<tr>
+						<tr class="tr_td_frirst">
 							<td><md-checkbox ng-checked="isCheckedTechnical()"
 									md-indeterminate="isIndeterminateTechnical()"
 									ng-click="toggleAllTechnical()"> <span
 									ng-if="isCheckedTechnical()">Un-</span>Select All </md-checkbox></td>
 							</td>
 							<td>
-								<p href="#"
-									ng-click="sortType = 'name'; sortReverse = !sortReverse">
+								<p ng-click="sortType = 'name'; sortReverse = !sortReverse">
 									Skill <span ng-show="sortType == 'name' && !sortReverse"
 										class="fa fa-caret-down"></span> <span
 										ng-show="sortType == 'name' && sortReverse"
@@ -116,8 +101,7 @@
 								</p>
 							</td>
 							<td>
-								<p href="#"
-									ng-click="sortType = 'ex'; sortReverse = !sortReverse">
+								<p ng-click="sortType = 'ex'; sortReverse = !sortReverse">
 									Level <span ng-show="sortType == 'ex' && !sortReverse"
 										class="fa fa-caret-down"></span> <span
 										ng-show="sortType == 'ex' && sortReverse"
@@ -132,24 +116,33 @@
 
 					<tbody>
 						<tr
-							ng-repeat="x in technicals | orderBy:sortType:sortReverse | filter:search">
+							ng-repeat="x in filteredTechnical | orderBy:sortType:sortReverse | filter:search">
 							<td><md-checkbox ng-click="toggle(x, selectCheckTechnical)"
 									ng-checked="exists(x, selectCheckTechnical)"> </md-checkbox></td>
 							<td>{{ x.skill }}</td>
 							<td>{{ x.level }}</td>
-							<td><md-button class="fas fa-pencil-alt"
+							<td><md-button class="fas fa-edit"
 									ng-click="showAdvancedTechnical(x)"> </md-button></td>
 						</tr>
 					</tbody>
 				</table>
+				<pagination ng-model="currentPageTech.page"
+					total-items="todosTech.length" max-size="maxSizeTech"
+					boundary-links="true"> </pagination>
+				<div>
+					<nav aria-label="Page navigation">
+						<ul class="pagination" id="pagination"></ul>
+					</nav>
+				</div>
 			</div>
-			</md-content> </md-tab> <!-- 	Tab ADVANTAGE --> <md-tab label="Advantages"> <md-content
-				class="md-padding">
-			<div ng-controller="detail_Advantages_Ctrl"
+
+			</tab> <tab heading="Advantage">
+			<div class="employee-detail__tab--advantage"
 				style="display: flex; align-items: center; justify-content: center; width: 100%;">
 				<div>
 					<form>
-						<input type="text" ng-model="advantageForm.name" /> <span
+						<input type="text" placeholder="Add new advantage"
+							ng-model="advantageForm.name" /> <span
 							style="font-size: 2em; color: lightgreen"> <md-button
 								ng-click="submitAdvantage()" class="fas fa-plus-circle">
 							</md-button>
@@ -161,7 +154,7 @@
 				class="fas fa-trash-alt"
 				ng-click="deleteListAdvantage(selectCheckAdvantage)"></i>
 			</span>
-			<div ng-controller="detail_Advantages_Ctrl">
+			<div>
 				<table class="table">
 					<thead>
 						<tr>
@@ -185,21 +178,26 @@
 					</thead>
 					<tbody>
 						<tr
-							ng-repeat="x in advantages | orderBy:sortType:sortReverse | filter:search">
+							ng-repeat="x in filteredAdvantage | orderBy:sortType:sortReverse | filter:search">
 							<td><md-checkbox ng-click="toggle(x, selectCheckAdvantage)"
 									ng-checked="exists(x, selectCheckAdvantage)"> </md-checkbox></td>
 							<td>{{ x.name }}</td>
-							<td><md-button class="fas fa-pencil-alt"
+							<td><md-button class="fas fa-edit"
 									ng-click="showAdvanced(x)"> </md-button></td>
 						</tr>
 					</tbody>
 				</table>
-
+				<pagination ng-model="currentPageAdvan.page"
+					total-items="todosAdvan.length" max-size="maxSizeAdvan"
+					boundary-links="true"> </pagination>
+				<div>
+					<nav aria-label="Page navigation">
+						<ul class="pagination" id="pagination"></ul>
+					</nav>
+				</div>
 			</div>
-			</md-content> </md-tab> </md-tabs> </md-content>
-		</div>
-	</div>
-	<script type="text/ng-template" id="dialogEditTechnical.tmpl.html">
+			</tab> </tabset>
+			<script type="text/ng-template" id="dialogEditTechnical.tmpl.html">
 		<md-dialog>
 			<form ng-cloak>
 				<md-toolbar>
@@ -228,7 +226,7 @@
 			</form>
 		</md-dialog>
 		</script>
-	<script type="text/ng-template" id="dialogEditAdvantage.tmpl.html">
+			<script type="text/ng-template" id="dialogEditAdvantage.tmpl.html">
 	<md-dialog>
 		<form ng-cloak>
 			<md-toolbar>
@@ -256,12 +254,5 @@
 		</form>
 	</md-dialog>
 	</script>
-
-	<script>
-		ClassicEditor
-			.create(document.querySelector('#editor'))
-			.catch(error => {
-				console.error(error);
-			});
-	</script>
-</div>
+		</div>
+	</div>

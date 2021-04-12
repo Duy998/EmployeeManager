@@ -40,6 +40,7 @@ public class LoginService implements ILoginService {
 		UserDTO userDTO = new UserDTO();
 		if (userEntity != null && userEntity.getStatus() == 1) {
 			userDTO = userConverter.toDto(userEntity);
+			userDTO.setRoleName(userEntity.getPosition().getName());
 			userDTO.setMessage("true");
 		} else {
 			userDTO.setMessage("false");

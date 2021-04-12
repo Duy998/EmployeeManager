@@ -1,64 +1,70 @@
 
 <div>
-	<table class="table table-hover text-center">
-		<thead>
-			<tr>
-				<td>STT</td>
-				<td>
-					<p href="#"
-						ng-click="sortType = 'name'; sortReverse = !sortReverse">
-						Name Employee <span ng-show="sortType == 'name' && !sortReverse"
-							class="fa fa-caret-down"></span> <span
-							ng-show="sortType == 'name' && sortReverse"
-							class="fa fa-caret-up"></span>
-					</p>
-				</td>
-				<td>
-					<p href="#" ng-click="sortType = 'age'; sortReverse = !sortReverse">
-						Age <span ng-show="sortType == 'age' && !sortReverse"
-							class="fa fa-caret-down"></span> <span
-							ng-show="sortType == 'age' && sortReverse" class="fa fa-caret-up"></span>
-					</p>
-				</td>
-				<td>
-					<p href="#"
-						ng-click="sortType = 'nickname'; sortReverse = !sortReverse">
-						NickName <span ng-show="sortType == 'nickname' && !sortReverse"
-							class="fa fa-caret-down"></span> <span
-							ng-show="sortType == 'nickname' && sortReverse"
-							class="fa fa-caret-up"></span>
-					</p>
-				</td>
+	<div class="wrap__table">
+		<table class="table__default">
+			<thead>
+				<tr>
+					<td>STT</td>
+					<td>
+						<p href="#"
+							ng-click="sortType = 'name'; sortReverse = !sortReverse">
+							Name Employee <span ng-show="sortType == 'name' && !sortReverse"
+								class="fa fa-caret-down"></span> <span
+								ng-show="sortType == 'name' && sortReverse"
+								class="fa fa-caret-up"></span>
+						</p>
+					</td>
+					<td>
+						<p href="#"
+							ng-click="sortType = 'age'; sortReverse = !sortReverse">
+							Age <span ng-show="sortType == 'age' && !sortReverse"
+								class="fa fa-caret-down"></span> <span
+								ng-show="sortType == 'age' && sortReverse"
+								class="fa fa-caret-up"></span>
+						</p>
+					</td>
+					<td>
+						<p href="#"
+							ng-click="sortType = 'nickname'; sortReverse = !sortReverse">
+							NickName <span ng-show="sortType == 'nickname' && !sortReverse"
+								class="fa fa-caret-down"></span> <span
+								ng-show="sortType == 'nickname' && sortReverse"
+								class="fa fa-caret-up"></span>
+						</p>
+					</td>
 
-				<td>
-					<p href="#"
-						ng-click="sortType = 'email'; sortReverse = !sortReverse">
-						Email <span ng-show="sortType == 'email' && !sortReverse"
-							class="fa fa-caret-down"></span> <span
-							ng-show="sortType == 'email' && sortReverse"
-							class="fa fa-caret-up"></span>
-					</p>
-				</td>
-				<td class="daystart">Day Start</td>
-				<td class="sex">Sex(Male)</td>
-				<td class="status">Status</td>
+					<td>
+						<p href="#"
+							ng-click="sortType = 'email'; sortReverse = !sortReverse">
+							Email <span ng-show="sortType == 'email' && !sortReverse"
+								class="fa fa-caret-down"></span> <span
+								ng-show="sortType == 'email' && sortReverse"
+								class="fa fa-caret-up"></span>
+						</p>
+					</td>
+					<td class="daystart">Day Start</td>
+					<td class="sex">Sex(Male)</td>
+					<td class="status">Status</td>
 
-			</tr>
-		</thead>
-		<tbody>
-			<tr
-				ng-repeat="x in employees | orderBy:sortType:sortReverse | filter:search">
-				<td>{{$index+1}}</td>
-				<td><a href="#">{{ x.name }}</a></td>
-				<td>{{ x.age }}</td>
-				<td>{{ x.nickName}}</td>
-				<td>{{ x.email}}</td>
-				<td>{{x.dayStart}}</td>
-				<td><input type='checkbox' ng-checked="x.sex == 1" name=''
-					id='' value='' /></td>
-				<td><input type='checkbox' ng-checked="x.status == 1" name=''
-					id='' value='' /></td>
-			</tr>
-		</tbody>
-	</table>
+				</tr>
+			</thead>
+			<tbody>
+				<tr
+					dir-paginate="x in employees | orderBy:sortType:sortReverse | filter:search |itemsPerPage:2">
+					<td>{{$index+1}}</td>
+					<td><a href="#">{{ x.name }}</a></td>
+					<td>{{ x.age }}</td>
+					<td>{{ x.nickName}}</td>
+					<td>{{ x.email}}</td>
+					<td>{{x.dayStart | date: "dd/MM/yyyy"}}</td>
+					<td><input type='checkbox' ng-checked="x.sex == 1" name=''
+						id='' value='' /></td>
+					<td><input type='checkbox' ng-checked="x.status == 1" name=''
+						id='' value='' /></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<dir-pagination-controls max-size="9" direction-links="true"
+		boundary-links="true"> </dir-pagination-controls>
 </div>

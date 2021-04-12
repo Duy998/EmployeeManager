@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import employee.com.DTO.RoleDTO;
@@ -36,8 +38,8 @@ public class RoleAPI {
 		iPositionService.updatePosition(dto, id);
 	}
 
-	@DeleteMapping
-	public void deletePosition(@RequestBody Long id) {
+	@RequestMapping(value = "/delete", method = RequestMethod.DELETE)
+	public void deletePosition(@RequestParam Long id) {
 		iPositionService.deletePosition(id);
 	}
 

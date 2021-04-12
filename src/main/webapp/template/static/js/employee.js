@@ -18,9 +18,14 @@ angular.module('myApp').config(function($routeProvider) {
 	$scope.changeViewEmployee = changeViewEventEmployee;
 	$scope.choseEventEmployee = choseTeamEmployee;
 	$scope.employees;
+	$scope.positiones;
+	$scope.teames;
+
 	//Now load the data from server
-	_refreshEmployeeData();
+	_refreshEmployeeData(0);
 	_refreshPositionData();
+	_refreshTeamData();
+
 	$scope.employeeForm = {
 		id: 1,
 		name: "",
@@ -32,13 +37,19 @@ angular.module('myApp').config(function($routeProvider) {
 		password: "",
 		sex: 0,
 		idRole: 0,
-		dayStart: new Date()
+		dayStart: "",
+		idTeam: 0
 	};
-	$scope.positiones = [];
+
 	$scope.positionForm = {
 		id: "",
 		name: ""
 	};
+
+	$scope.teamForm = {
+		id: "",
+		name: ""
+	}
 
 	$scope.selectCheck = [];
 	$scope.toggle = function(item, list) {
@@ -49,6 +60,7 @@ angular.module('myApp').config(function($routeProvider) {
 			list.push(item);
 		}
 	};
+
 	$scope.exists = function(item, list) {
 		return list.indexOf(item) > -1;
 	};
@@ -58,7 +70,7 @@ angular.module('myApp').config(function($routeProvider) {
 		console.log(employeeForm);
 
 		var method = "POST";
-		var url = "http://localhost:8080/EmployeeManager/api/user";
+		var url = "/EmployeeManager/api/user";
 
 		$http({
 			method: method,
@@ -72,15 +84,6 @@ angular.module('myApp').config(function($routeProvider) {
 	}
 
 
-	//Delete data form client
-	/*$scope.deleteEmployee = function(employee) {
-		$http({
-			method: 'DELETE',
-			url: 'http://localhost:8080/EmployeeManager/api/user/' + employee.id
-		}).then(_success, _error);
-	};*/
-
-
 	//Method Delete
 	$scope.deleteEmployee = function(selectCheck) {
 		let arr = [];
@@ -89,7 +92,7 @@ angular.module('myApp').config(function($routeProvider) {
 		}
 		$http({
 			method: 'DELETE',
-			url: 'http://localhost:8080/EmployeeManager/api/user/' + arr,
+			url: '/EmployeeManager/api/user/' + arr,
 		}).then(function(response) {
 			_refreshEmployeeData();
 		}, function(response) {
@@ -97,6 +100,7 @@ angular.module('myApp').config(function($routeProvider) {
 		});
 
 	};
+
 
 	//////////
 
@@ -111,16 +115,18 @@ angular.module('myApp').config(function($routeProvider) {
 		$scope.employeeForm.password = employeess.password;
 		$scope.employeeFrom.status = employeess.status;
 		$scope.employeeFrom.sex = employeess.sex;
+		$scope.employeeForm.team = employeess.team;
 	};
 
 
 	// method GET data with API Technical
-	function _refreshEmployeeData() {
+	function _refreshEmployeeData(id) {
 		$http({
 			method: 'GET',
-			url: 'http://localhost:8080/EmployeeManager/api/user'
+			url: '/EmployeeManager/api/user/' + id,
 		}).then(function(res) { // success
 			$scope.employees = res.data;
+
 
 			$scope.isIndeterminate = function() {
 				return ($scope.selectCheck.length !== 0 &&
@@ -148,7 +154,7 @@ angular.module('myApp').config(function($routeProvider) {
 	/*function _refreshEmployeeData() {
 		$http({
 			method: 'GET',
-			url: 'http://localhost:8080/EmployeeManager/api/user'
+			url: '/EmployeeManager/api/user'
 		}).then(
 			function(res) {
 				$scope.employees = res.data;
@@ -163,10 +169,25 @@ angular.module('myApp').config(function($routeProvider) {
 	function _refreshPositionData() {
 		$http({
 			method: 'GET',
-			url: 'http://localhost:8080/EmployeeManager/api/position'
+			url: '/EmployeeManager/api/position'
 		}).then(
 			function(res) {
 				$scope.positiones = res.data;
+			},
+			function(res) {
+				console.log("Error: " + res.status + " : " + res.data);
+			}
+		);
+	}
+
+	//Http GET Team
+	function _refreshTeamData() {
+		$http({
+			method: 'GET',
+			url: '/EmployeeManager/api/team'
+		}).then(
+			function(res) {
+				$scope.teames = res.data;
 			},
 			function(res) {
 				console.log("Error: " + res.status + " : " + res.data);
@@ -197,13 +218,14 @@ angular.module('myApp').config(function($routeProvider) {
 		$scope.employeeForm.password = "";
 		$scope.employeeForm.status = "";
 		$scope.employeeForm.sex = "";
+		$scope.employeeForm.team = "";
 	};
 
 	// Details employee
 	$scope.getEmployeeDetail = function(x) {
 		$http({
 			method: 'GET',
-			url: '/EmployeeManager/api/user/' + x.id
+			url: '/EmployeeManager/api/user/single/' + x.id
 		}).then(function(res) {
 			location.href = "/EmployeeManager/home#!/id=" + x.id;
 			sessionStorage.setItem("detailuser", JSON.stringify(res.data));

@@ -1,6 +1,6 @@
 <div class="team__infor-body">
 	<div class="">
-		<h1>duy</h1>
+		<h1>{{infornameitem.name}}</h1>
 	</div>
 	<div class="team__infor-sm9">
 		<table class="infor__table team__infor-table table">
@@ -12,7 +12,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat="item in infornames.users" class="infor__tr">
+				<tr ng-repeat="item in infornames.users" class="infor__tr" ng-click="informationitem(item.id)">
 					<td class="infor__td">{{item.name}}</td>
 					<td class="infor__td">{{item.posiTion}}</td>
 					<td class="infor__td">{{item.exPe}}</td>

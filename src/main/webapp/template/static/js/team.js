@@ -24,26 +24,15 @@ angular.module('myApp').config(function($routeProvider) {
 
 
 	/*==========================================================================*/
-	/*$(function() {
-		window.pagObj = $('#pagination').twbsPagination({
-			totalPages: 10,
-			visiblePages: 5,
-			startPage: 1,
-			onPageClick: function(event, page) {
-				console.info(page + ' (from event listening)');
-			}
-		}).on('page', function(event, page) {
-		});
-	});*/
-	/*============================*/
-
 	/*loadAllTeam========================================*/
 	_loadTeamData();
+	
 	$scope.teams;
+	
 	function _loadTeamData() {
 		$http({
 			method: 'GET',
-			url: 'http://localhost:8080/EmployeeManager/api/team?page=1&limit=2'
+			url: 'http://localhost:8080/EmployeeManager/api/team'
 		}).then(function(res) { // success
 			$scope.teams = res.data;
 
@@ -145,9 +134,10 @@ angular.module('myApp').config(function($routeProvider) {
 		$scope.loadupdateteam = JSON.parse(sessionStorage.loadbyids);
 		$scope.idTeam = $scope.loadupdateteam.idTeam;
 		$scope.nameTeam = $scope.loadupdateteam.nameTeam;
+		$scope.managername = $scope.loadupdateteam.managername;
 	}
-	$scope.managername;
-	/*=updateTeam=*/
+
+
 
 	$scope.GetValue = function() {
 
@@ -173,10 +163,8 @@ angular.module('myApp').config(function($routeProvider) {
 			url: 'http://localhost:8080/EmployeeManager/api/team',
 			data: $scope.result
 		}).then(function(res) { // success
-			/*$location.path('/AddTeam');*/
-			$scope.success = "insert success";
-			$scope.showMe = !$scope.showMe;
-
+			_loadTeamData()
+			$location.path('/team');
 		}, function(res) { // error
 			console.log("Error: " + res.status + " : " + res.data);
 		});
@@ -214,8 +202,27 @@ angular.module('myApp').config(function($routeProvider) {
 			console.log("Error: " + res.status + " : " + res.data);
 		});
 	}
+	
 	$scope.infornames;
 	if (sessionStorage.inforname) {
 		$scope.infornames = JSON.parse(sessionStorage.inforname);
 	}
+
+
+	/*============================================infornameitem============*/
+
+	$scope.informationitem = function(userid) {
+		$http({
+			method: 'GET',
+			url: 'http://localhost:8080/EmployeeManager/api/user/' + userid + '/inforteamitem',
+		}).then(function(res) { // success
+			$scope.infornameitem = res.data;
+
+		}, function(res) { // error
+			console.log("Error: " + res.status + " : " + res.data);
+		});
+	}
+
+
+
 });

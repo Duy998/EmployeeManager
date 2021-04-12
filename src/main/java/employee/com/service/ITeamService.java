@@ -5,7 +5,7 @@ import employee.com.DTO.Request.TeamRrequest;
 
 public interface ITeamService {
 
-	TeamDTO findAll(int page, int limit);
+	TeamDTO findAll();
 
 	TeamDTO InsertTeam(TeamDTO dto);
 
@@ -19,5 +19,6 @@ public interface ITeamService {
 //	TeamDTO updateTeam(TeamDTO dto); 
 	int getTotalItem();
 
-	TeamDTO Inforteam(Long id);
+	TeamDTO Inforteam(Long TeamId);
+	
 }

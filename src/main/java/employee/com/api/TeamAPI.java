@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import employee.com.DTO.TeamDTO;
@@ -27,8 +26,8 @@ public class TeamAPI {
 	private ITeamRequestService itemrequest;
 
 	@GetMapping
-	public TeamDTO getlistteam(@RequestParam("page") int page, @RequestParam("limit") int limit) {
-		return iteamservice.findAll(page, limit);
+	public TeamDTO getlistteam() {
+		return iteamservice.findAll();
 	}
 
 	@PostMapping
@@ -50,7 +49,6 @@ public class TeamAPI {
 	public TeamDTO selectTeamByIteam(@PathVariable("teamid") Long teamid) {
 		return iteamservice.findOneByid(teamid);
 	}
-
 	/* ===========loadUserAnd Insert or Update=========== */
 
 	/* ===========/loadUserAnd Insert or Update=========== */
@@ -61,8 +59,10 @@ public class TeamAPI {
 	}
 
 	/* ===================inforteam============================== */
-	@GetMapping("/inforteam/{teamid}")
-	public TeamDTO inforteam(@PathVariable("teamid") Long teamid) {
-		return iteamservice.Inforteam(teamid);
+	@GetMapping("/inforteam/{teamId}")
+	public TeamDTO inforteam(@PathVariable("teamId") Long teamId) {
+		return iteamservice.Inforteam(teamId);
 	}
+	
+	
 }

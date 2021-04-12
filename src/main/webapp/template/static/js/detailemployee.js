@@ -3,7 +3,22 @@ angular.module('myApp').controller('detailEmployeeCtrl', function($scope, $http,
 	// Get data User
 	$scope.detailUser = JSON.parse(sessionStorage.detailuser);
 
-	$scope.userDetail = {
+	_loadTeamData();
+
+	function _loadTeamData() {
+		$http({
+			method: 'GET',
+			url: '/EmployeeManager/api/team?page=1&limit=2'
+		}).then(function(res) { // success
+			$scope.teams = res.data;
+
+			$scope.selectTeam = $scope.teams.listresult;
+
+		}, function(res) { // error
+			console.log("Error: " + res.status + " : " + res.data);
+		});
+	}
+	$scope.eachUser = {
 		id: $scope.detailUser.id,
 		name: $scope.detailUser.name,
 		nickName: $scope.detailUser.nickName,
@@ -12,29 +27,27 @@ angular.module('myApp').controller('detailEmployeeCtrl', function($scope, $http,
 		profile: $scope.detailUser.profile,
 		status: $scope.detailUser.status,
 		email: $scope.detailUser.email,
-		password: $scope.detailUser.password,
 		message: $scope.detailUser.message,
 		nameRole: $scope.detailUser.nameRole,
 		sex: $scope.detailUser.sex,
-		idRole: $scope.detailUser.idRole
+		idRole: $scope.detailUser.idRole,
+		idTeam: $scope.detailUser.idTeam
 	}
-	$scope.selectDetail = [];
-
-
 	// edit User
-	$scope.editUser = function(detailUser) {
+	$scope.editUser = function(eachUser) {
 		$http({
 			method: 'PUT',
-			url: '/EmployeeManager/api/user/' + detailUser.id,
-			data: angular.toJson(detailUser),
+			url: '/EmployeeManager/api/user/' + eachUser.id,
+			data: angular.toJson(eachUser),
 			headers: {
 				'Content-Type': 'application/json'
 			}
 		})
 	};
-
-
-
+	$scope.backEmployee = function() {
+		sessionStorage.clear();
+		location.href = "http://localhost:8080/EmployeeManager/home";
+	};
 
 	// Click select row
 	$scope.toggle = function(item, list) {
@@ -67,6 +80,7 @@ angular.module('myApp').controller('detailEmployeeCtrl', function($scope, $http,
 	$scope.technicals = [];
 	$scope.selectCheckTechnical = [];
 
+
 	// method GET data with API Technical
 	function _loadTechnicalData(detailUser) {
 		// Call API findAll Data
@@ -95,7 +109,28 @@ angular.module('myApp').controller('detailEmployeeCtrl', function($scope, $http,
 					$scope.selectCheckTechnical = $scope.technicals.slice(0);
 				}
 			};
+			/*================panageble==========================================================*/
+			$scope.filteredTechnical = []
+			$scope.currentPageTech = { page: 1 };
+			$scope.numPerPageTech = 10;
+			$scope.maxSizeTech = 3;
 
+			$scope.makeTodosTechnical = function() {
+				$scope.todosTech = [];
+				for (i = 0; i < $scope.technicals.length; i++) {
+					$scope.todosTech.push($scope.technicals[i]);
+				}
+			};
+			$scope.makeTodosTechnical();
+
+			$scope.$watch('currentPageTech.page', function() {
+				var beginTech = (($scope.currentPageTech.page - 1) * $scope.numPerPageTech)
+					, endTech = beginTech + $scope.numPerPageTech;
+
+				$scope.filteredTechnical = $scope.todosTech.slice(beginTech, endTech);
+
+			}, true);
+			/*============================*/
 		}, function(res) { // error
 			console.log("Error: " + res.status + " : " + res.data);
 		});
@@ -103,6 +138,7 @@ angular.module('myApp').controller('detailEmployeeCtrl', function($scope, $http,
 
 	// Load the data Technical from server
 	_loadTechnicalData($scope.detailUser);
+
 
 	// Method Delete List Technical
 	$scope.deleteListTechnical = function(selectCheckTechnical) {
@@ -227,6 +263,29 @@ angular.module('myApp').controller('detailEmployeeCtrl', function($scope, $http,
 				}
 			};
 
+			/*================panageble==========================================================*/
+			$scope.filteredAdvantage = []
+			$scope.currentPageAdvan = { page: 1 };
+			$scope.numPerPageAdvan = 10;
+			$scope.maxSizeAdvan = 3;
+
+			$scope.makeTodosAdvantage = function() {
+				$scope.todosAdvan = [];
+				for (i = 0; i < $scope.advantages.length; i++) {
+					$scope.todosAdvan.push($scope.advantages[i]);
+				}
+			};
+			$scope.makeTodosAdvantage();
+
+			$scope.$watch('currentPageAdvan.page', function() {
+				var beginAdvan = (($scope.currentPageAdvan.page - 1) * $scope.numPerPageAdvan)
+					, endAdvan = beginAdvan + $scope.numPerPageAdvan;
+
+				$scope.filteredAdvantage = $scope.todosAdvan.slice(beginAdvan, endAdvan);
+
+			}, true);
+			/*============================*/
+
 		}, function(res) { // error
 			console.log("Error: " + res.status + " : " + res.data);
 		});
@@ -320,13 +379,5 @@ angular.module('myApp').controller('detailEmployeeCtrl', function($scope, $http,
 		_loadAdvantageData();
 		_clearAdvantageFormData();
 	}
-
-});
-// Controller Technical
-angular.module('myApp').controller('detail_techskill_Ctrl', function($scope, $http) {
-
-});
-
-angular.module('myApp').controller('detail_Advantages_Ctrl', function($scope, $http) {
 
 });

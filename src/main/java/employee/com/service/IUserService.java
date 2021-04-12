@@ -9,6 +9,8 @@ public interface IUserService {
 	// Find All
 	List<UserDTO> findAll();
 
+	List<UserDTO> findAllById(long id);
+
 	void saveUser(UserDTO userDTO);
 
 	UserDTO updateUser(UserDTO dto, Long id);
@@ -23,6 +25,10 @@ public interface IUserService {
 
 	List<UserDTO> findUserByPositionName(String name);
 
+	UserDTO findByIdUserTeam(Long id);
+
+	UserDTO findUserByUserid(Long userid);
+
 	// Find check role
 	UserDTO checkRole(String email);
 
@@ -30,4 +36,5 @@ public interface IUserService {
 	String getMD5(String password);
 
 	UserDTO findById(Long id);
+
 }

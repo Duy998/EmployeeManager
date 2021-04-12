@@ -23,19 +23,23 @@ public class UserAPI {
 	private IUserService iuserService;
 
 	// Find employee
-	@GetMapping
-	public List<UserDTO> getEmployees() {
-		return iuserService.findAll();
+	@GetMapping("/{id}")
+	public List<UserDTO> getEmployees(@PathVariable long id) {
+		if (id == 0) {
+			return iuserService.findAll();
+		} else {
+			return iuserService.findAllById(id);
+		}
+	}
+
+	@GetMapping("/single/{id}")
+	public UserDTO getEmployeesById(@PathVariable Long id) {
+		return iuserService.findById(id);
 	}
 
 	@PostMapping
 	public void insertUser(@RequestBody UserDTO dto) {
 		iuserService.saveUser(dto);
-	}
-
-	@GetMapping("/{id}")
-	public UserDTO getEmployeesById(@PathVariable Long id) {
-		return iuserService.findById(id);
 	}
 
 	@PutMapping("/{id}")
@@ -66,4 +70,15 @@ public class UserAPI {
 	public List<UserDTO> getUserByPositionName(@PathVariable("teamid") String name) {
 		return iuserService.findUserByPositionName(name);
 	}
+
+	@GetMapping("/loaduser/{iduser}")
+	public UserDTO getUserByidUser(@PathVariable("iduser") Long iduser) {
+		return iuserService.findByIdUserTeam(iduser);
+	}
+
+	@GetMapping("/{userid}/inforteamitem")
+	public UserDTO getUserByuserid(@PathVariable("userid") Long userid) {
+		return iuserService.findUserByUserid(userid);
+	}
+
 }

@@ -1,14 +1,14 @@
-<div class="default__header">
-	<div class="default__header__name">
-		<h4 class="font-weight-bolder">{{nameDefault}}</h4>
+<div class="default__header row m-0">
+	<div class="default__header__name col-sm-3">
+		<h4 class="font-weight-bolder text-nowrap">{{nameDefault}}</h4>
 	</div>
-	<div class="default__header__search">
-		<select ng-model="x">
+	<div class="default__header__search col-sm-6">
+		<select ng-model="x" ng-change="chose()">
 			<option ng-repeat="x in positiones" ng-value="x">{{x.name}}</option>
 		</select>
 	</div>
-	<div class="default__header__icon">
-		<a ng-click="deletePosition(x.id)"> <i class="fas fa-trash-alt"></i>
+	<div class="default__header__icon col-sm-3">
+		<a ng-click="deletePosition(x)"> <i class="fas fa-trash-alt"></i>
 		</a>
 		<!-- <a href="#">
             <i class="fas fa-edit"></i>
