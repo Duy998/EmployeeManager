@@ -116,7 +116,6 @@ table tbody .childTeam:focus {
 }
 /* ==============editteam=============== */
 .form__editteam {
-	background: #ccdaff7a;
 	min-height: 80vh;
 }
 
@@ -128,10 +127,8 @@ table tbody .childTeam:focus {
 
 .form__editteam-body {
 	display: block;
-	width: 60rem;
-	margin-left: 0 auto;
+	width: 45%;
 	height: 5rem;
-	margin-left: 27rem;
 }
 
 .form__editteam-body-input {
@@ -142,13 +139,13 @@ table tbody .childTeam:focus {
 .form__editteam-body-input i {
 	position: absolute;
 	top: 10%;
-	left: 72%;
+	right: 2%;
 	font-size: 30px;
-	color: #8686bf;
+	color: #4e73df;
 }
 
 .form__editteam-body-input input {
-	width: inherit;
+	width: 100%;
 	padding: 8px;
 	border-radius: 5px;
 	border: 1px solid #8e696952;
@@ -159,10 +156,9 @@ table tbody .childTeam:focus {
 }
 
 .form__editteam-submit {
-	/* margin: 0 auto; */
-	display: block;
-	width: 30rem;
-	margin-left: 30rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .form__editteam-submit a {
@@ -174,7 +170,6 @@ table tbody .childTeam:focus {
 }
 /* ====================/edittem ========*/
 .team__infor-body {
-	background: #ccdaff7a;
 	min-height: 75vh;
 	position: relative;
 }
@@ -196,11 +191,9 @@ table tbody .childTeam:focus {
 /* ====================/infor=========*/
 .teamupdate__body.ng-scope {
 	min-height: 80vh;
-	background: aliceblue;
 }
 
 .teamupdate__form {
-	background: #e4e3ea;
 	width: 60rem;
 	margin-left: 17rem;
 	min-height: 50rem;

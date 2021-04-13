@@ -94,7 +94,8 @@ angular.module('myApp').config(function($routeProvider) {
 			method: 'DELETE',
 			url: '/EmployeeManager/api/user/' + arr,
 		}).then(function(response) {
-			_refreshEmployeeData();
+			_refreshEmployeeData(0);
+			arr = [];
 		}, function(response) {
 			console.log(response + selectCheck);
 		});

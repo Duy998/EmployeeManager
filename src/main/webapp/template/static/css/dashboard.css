@@ -29,6 +29,16 @@
 	.navbars__menu__open, .navbars__menu__close {
 		display: none;
 	}
+	.pagination__default {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	.pagination__default ul {
+		position: fixed;
+		bottom: 10%;
+	}
+
 	/* Footer */
 	.footer {
 		width: 80%;
@@ -69,7 +79,7 @@
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		z-index: 1;
+		z-index: 99999;
 	}
 	.navbars__menu__open {
 		cursor: pointer;
@@ -226,9 +236,14 @@ body {
 .default__header__search input {
 	width: 100%;
 	padding: 7px 10px;
+	border: 1px solid;
+	color: slategrey;
+	border-radius: 5px;
+	/* width: 100%;
+	padding: 7px 10px;
 	border: none;
 	color: slategrey;
-	border-bottom: 2px solid #4e73df;
+	border-bottom: 2px solid #4e73df; */
 }
 
 .default__header__search input:focus {
@@ -238,9 +253,14 @@ body {
 .default__header__search select {
 	width: 100%;
 	padding: 7px 10px;
+	border: 1px solid;
+	color: slategrey;
+	border-radius: 5px;
+	/* width: 100%;
+	padding: 7px 10px;
 	border: none;
 	color: slategrey;
-	border-bottom: 2px solid #4e73df;
+	border-bottom: 2px solid #4e73df; */
 }
 
 .default__header__search select:focus {
@@ -280,11 +300,24 @@ body {
 	border: 1px solid #00000078;
 }
 
+.table__default thead tr td p {
+	margin: 0;
+}
+
 .table__default thead tr td, .table__default tbody tr td {
 	padding: 1em;
 	text-align: center;
 	border-right: 1px solid #00000078;
 	white-space: nowrap;
+}
+
+.table__default thead .table__default__tr td, .table__default tbody .table__default__tr td
+	{
+	padding: 5px;
+}
+
+.table__default thead tr:focus, .table__default tbody tr:focus {
+	outline: none;
 }
 
 .table__default thead tr td:focus, .table__default tbody tr td:focus {
@@ -309,6 +342,62 @@ body {
 	cursor: pointer;
 }
 
+.table__default thead .table__default__checkAll {
+	width: 14px;
+}
+
+.table__default thead .table__default__checkAll md-checkbox .md-ink-ripple
+	{
+	margin-left: 18px;
+	margin-top: 24px;
+}
+
+.table__default thead .table__default__checkAll md-checkbox .md-label {
+	margin-top: 14px;
+	margin-bottom: auto;
+	margin-left: 40px;
+}
+
+.table__default thead .table__default__name {
+	width: 13em;
+}
+
+.table__default thead .table__default__age {
+	width: 5em;
+}
+
+.table__default thead .table__default__nickname {
+	width: 9em;
+}
+
+.table__default thead .table__default__role {
+	width: 8em;
+}
+
+.table__default thead .table__default__email {
+	width: 18em;
+}
+
+.table__default thead .table__default__bit {
+	width: 5em;
+}
+
+md-dialog md-dialog-content .md-title {
+	font-size: 19px;
+}
+
+md-dialog md-dialog-actions button {
+	color: white;
+	text-transform: revert;
+}
+
+/*md-dialog md-dialog-actions .md-cancel-button {
+	background: #d00d0dd4;
+}
+
+md-dialog md-dialog-actions .md-confirm-button {
+	background: #15b515;
+}*/
 /* Footer */
 .footer {
 	position: absolute;

@@ -26,9 +26,9 @@ angular.module('myApp').config(function($routeProvider) {
 	/*==========================================================================*/
 	/*loadAllTeam========================================*/
 	_loadTeamData();
-	
+
 	$scope.teams;
-	
+
 	function _loadTeamData() {
 		$http({
 			method: 'GET',
@@ -181,6 +181,7 @@ angular.module('myApp').config(function($routeProvider) {
 			$scope.deletesuccsess = "xoa thanh cong";
 			_loadTeamData();
 			$location.path('/team');
+			$scope.userChecked = [];
 		}, function(res) { // error
 			console.log("Error: " + res.status + " : " + res.data);
 		});
@@ -202,7 +203,7 @@ angular.module('myApp').config(function($routeProvider) {
 			console.log("Error: " + res.status + " : " + res.data);
 		});
 	}
-	
+
 	$scope.infornames;
 	if (sessionStorage.inforname) {
 		$scope.infornames = JSON.parse(sessionStorage.inforname);

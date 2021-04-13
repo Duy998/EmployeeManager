@@ -10,8 +10,10 @@ import org.springframework.util.DigestUtils;
 import employee.com.DTO.UserDTO;
 import employee.com.converter.UserConverter;
 import employee.com.entity.RoleEntity;
+import employee.com.entity.TeamEntity;
 import employee.com.entity.UserEntity;
 import employee.com.repository.RoleRepository;
+import employee.com.repository.TeamRepository;
 import employee.com.repository.UserRepository;
 import employee.com.service.IUserService;
 
@@ -26,6 +28,9 @@ public class UserService implements IUserService {
 
 	@Autowired
 	private RoleRepository positionRepository;
+
+	@Autowired
+	private TeamRepository teamRepository;
 
 	@Override
 	public List<UserDTO> findAll() {
@@ -67,6 +72,7 @@ public class UserService implements IUserService {
 		UserDTO dto = new UserDTO();
 		dto = userConverter.toDto(entity);
 		dto.setTeam(entity.getTeam().getName());
+		dto.setIdTeam(entity.getTeam().getId());
 		return dto;
 	}
 
@@ -92,10 +98,18 @@ public class UserService implements IUserService {
 	public UserDTO updateUser(UserDTO dto, Long id) {
 		UserEntity userEntity = new UserEntity();
 		userEntity = userRepository.findOne(id);
-		userEntity = userConverter.toEntity(dto);
-		userEntity.setId(id);
+		userEntity.setAge(dto.getAge());
+		userEntity.setDayStart(dto.getDayStart());
+		userEntity.setEmail(dto.getEmail());
+		userEntity.setName(dto.getName());
+		userEntity.setNickName(dto.getNickName());
+		userEntity.setProfile(dto.getProfile());
+		userEntity.setSex(dto.getSex());
+		userEntity.setStatus(dto.getStatus());
 		RoleEntity positionEntity = positionRepository.findOne(dto.getIdRole());
 		userEntity.setPosition(positionEntity);
+		TeamEntity teamEntity = teamRepository.findOne(dto.getIdTeam());
+		userEntity.setTeam(teamEntity);
 		UserDTO userDTO = new UserDTO();
 		userRepository.save(userEntity);
 		userDTO.setMessage("true");

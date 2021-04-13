@@ -3,7 +3,7 @@
  */
 (function() {
 	'user strict';
-	angular.module('myApp', ['ngRoute', 'ngMaterial', 'ui.bootstrap', 'angularUtils.directives.dirPagination']).config(function($routeProvider) {
+	angular.module('myApp', ['ngRoute', 'ngSanitize', 'ngMaterial', 'ui.bootstrap', 'angularUtils.directives.dirPagination']).config(function($routeProvider) {
 		$routeProvider.otherwise({
 			redirecTo: "/",
 			controller: "employeeCtrl"
@@ -21,14 +21,23 @@
 			location.href = "http://localhost:8080/EmployeeManager/login";
 		} else {
 			$scope.dataUser = JSON.parse(localStorage.user);
+			let obj = JSON.parse(localStorage.user);
+			$http({
+				url: "http://localhost:8080/EmployeeManager/api/checkrole?email=" + obj.email,
+				method: "GET"
+			}).then(function(response) {
+				$scope.getRoleName = response.data.roleName;
+			}, function(response) {
+				console.log(response);
+			});
 		}
 		// Event logout
 		$scope.showConfirm = function(ev) {
 			var confirm = $mdDialog.confirm()
 				.title('Would you like logout ?')
 				.targetEvent(ev)
-				.ok('Ok')
-				.cancel('Cancel');
+				.ok('Yes')
+				.cancel('No');
 
 			$mdDialog.show(confirm).then(function() {
 				logoutEvent();
@@ -36,28 +45,18 @@
 		};
 
 		$scope.checkRole = function() {
-			let obj = checkRoleEvent();
+			console.log(checkRoleEvent());
 		};
 
 		function checkRoleEvent() {
-			let roleName = ["ADMIN", "CEO", "BOD", "MANAGER", "ENGINEER"];
-			if (localStorage.user) {
-				let obj = JSON.parse(localStorage.user);
-				$http({
-					url: "http://localhost:8080/EmployeeManager/api/checkrole?email=" + obj.email,
-					method: "GET"
-				}).then(function(response) {
-					let getName;
-					for (let i = 0; i < roleName.length; i++) {
-						if (roleName[i] == response.data.roleName) {
-							getName = roleName[i];
-						}
-					}
-					return getName;
-				}, function(response) {
-					console.log(response);
-				});
+			let roleName = ["ADMIN", "CEO", "BOD", "MANAGER", "ENGINEER", "EMPLOYEE"];
+			let getName;
+			for (let i = 0; i < roleName.length; i++) {
+				if (roleName[i] == $scope.getRoleName) {
+					getName = roleName[i];
+				}
 			}
+			return getName;
 		}
 	}
 })();

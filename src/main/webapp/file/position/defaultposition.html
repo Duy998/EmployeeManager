@@ -1,6 +1,6 @@
 <div class="default__header row m-0">
 	<div class="default__header__name col-sm-3">
-		<h4 class="font-weight-bolder text-nowrap">{{nameDefault}}</h4>
+		<h4 class="font-weight-bolder text-nowrap text-uppercase">{{nameDefault}}</h4>
 	</div>
 	<div class="default__header__search col-sm-6">
 		<select ng-model="x" ng-change="chose()">
@@ -8,8 +8,10 @@
 		</select>
 	</div>
 	<div class="default__header__icon col-sm-3">
-		<a ng-click="deletePosition(x)"> <i class="fas fa-trash-alt"></i>
-		</a>
+		<button>
+			<a ng-click="deletePosition(x)"> <i class="fas fa-trash-alt"></i>
+			</a>
+		</button>
 		<!-- <a href="#">
             <i class="fas fa-edit"></i>
         </a> -->

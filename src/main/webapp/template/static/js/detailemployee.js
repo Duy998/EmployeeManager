@@ -18,6 +18,7 @@ angular.module('myApp').controller('detailEmployeeCtrl', function($scope, $http,
 			console.log("Error: " + res.status + " : " + res.data);
 		});
 	}
+
 	$scope.eachUser = {
 		id: $scope.detailUser.id,
 		name: $scope.detailUser.name,
@@ -33,6 +34,27 @@ angular.module('myApp').controller('detailEmployeeCtrl', function($scope, $http,
 		idRole: $scope.detailUser.idRole,
 		idTeam: $scope.detailUser.idTeam
 	}
+
+	$scope.displaySex = [
+		{
+			id: 0,
+			name: "Male"
+		},
+		{
+			id: 1,
+			name: "Female"
+		}
+	];
+
+	function convertSex() {
+		if ($scope.eachUser.sex == "0") {
+			$scope.icon = '<span class="icon_male"><i class="fas fa-mars"</i></span>';
+		} else {
+			$scope.icon = '<span class="icon_female"><i class="fas fa-venus"</i></span>';
+		}
+	}
+	convertSex();
+
 	// edit User
 	$scope.editUser = function(eachUser) {
 		$http({
@@ -112,7 +134,7 @@ angular.module('myApp').controller('detailEmployeeCtrl', function($scope, $http,
 			/*================panageble==========================================================*/
 			$scope.filteredTechnical = []
 			$scope.currentPageTech = { page: 1 };
-			$scope.numPerPageTech = 10;
+			$scope.numPerPageTech = 7;
 			$scope.maxSizeTech = 3;
 
 			$scope.makeTodosTechnical = function() {
@@ -266,7 +288,7 @@ angular.module('myApp').controller('detailEmployeeCtrl', function($scope, $http,
 			/*================panageble==========================================================*/
 			$scope.filteredAdvantage = []
 			$scope.currentPageAdvan = { page: 1 };
-			$scope.numPerPageAdvan = 10;
+			$scope.numPerPageAdvan = 7;
 			$scope.maxSizeAdvan = 3;
 
 			$scope.makeTodosAdvantage = function() {

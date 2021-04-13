@@ -17,6 +17,7 @@ public class UserDTO extends AbstactDTO<UserDTO> {
 	private Integer sex;
 	private String posiTion;
 	private String team;
+	private Long idTeam;
 
 	public String getPosiTion() {
 		return posiTion;
@@ -136,6 +137,14 @@ public class UserDTO extends AbstactDTO<UserDTO> {
 
 	public void setTeam(String team) {
 		this.team = team;
+	}
+
+	public Long getIdTeam() {
+		return idTeam;
+	}
+
+	public void setIdTeam(Long idTeam) {
+		this.idTeam = idTeam;
 	}
 
 }

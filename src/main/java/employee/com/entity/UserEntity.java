@@ -3,6 +3,7 @@ package employee.com.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -52,10 +53,10 @@ public class UserEntity extends BaseEntity {
 	@JoinColumn(name = "teamId")
 	private TeamEntity team;
 
-	@OneToMany(mappedBy = "user")
+	@OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
 	private List<TechnicalEntity> technicals = new ArrayList<>();
 
-	@OneToMany(mappedBy = "user")
+	@OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
 	private List<AdvantageEntity> advantages = new ArrayList<>();
 
 	public String getName() {
