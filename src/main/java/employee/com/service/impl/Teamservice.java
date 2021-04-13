@@ -19,6 +19,7 @@ import employee.com.entity.UserEntity;
 import employee.com.repository.TeamRepository;
 import employee.com.repository.UserRepository;
 import employee.com.service.ITeamService;
+import employee.com.utils.TeamUtils;
 
 @Service
 public class Teamservice implements ITeamService {
@@ -38,13 +39,16 @@ public class Teamservice implements ITeamService {
 	@Override
 	public TeamDTO findAll() {
 		List<TeamEntity> entitys = teamrepository.findAll();
+
 		TeamDTO result = new TeamDTO();
 		List<TeamDTO> listteam = new ArrayList<>();
 		// java8
 		entitys.forEach(teamv1 -> {
 			TeamDTO teamDTO = teamconverter.todto(teamv1);
-			teamDTO.setNumber(teamv1.getUsers().size());
+			teamv1.setNumber(TeamUtils.CountNumberTeam(teamv1.getNameManager(), teamv1.getUsers()));
+			teamrepository.save(teamv1);
 			listteam.add(teamDTO);
+
 		});
 		result.setListresult(listteam);
 		return result;
@@ -74,8 +78,15 @@ public class Teamservice implements ITeamService {
 	public TeamDTO findOneByid(Long id) {
 		TeamEntity entity = teamrepository.findOne(id);
 		TeamDTO dto = teamconverter.todto(entity);
+		/*
+		 * List<UserDTO> userdto = new ArrayList<UserDTO>();
+		 * 
+		 * for (UserEntity userDTO2 : entity.getUsers()) {
+		 * userdto.add(userconverter.toDto(userDTO2)); }
+		 */
 		List<UserDTO> userdto = entity.getUsers().stream().map(item -> userconverter.toDto(item))
 				.collect(Collectors.toList());
+
 		dto.setUsers(userdto);
 		return dto;
 	}
@@ -107,8 +118,8 @@ public class Teamservice implements ITeamService {
 			userEntity.setTeam(result);
 			userrepository.save(userEntity);
 		}
-		result.setNumber(dto.getCheckeds().length);	
-		//update lai all team
+
+		result.setNumber(TeamUtils.CountNumberTeam(dto.getManagername(), dto.getCheckeds()));
 		return teamconverter.todto(teamrepository.save(result));
 	}
 

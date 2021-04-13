@@ -10,12 +10,14 @@ public class TeamConverter {
 
 	public TeamDTO todto(TeamEntity entity) {
 		TeamDTO result = new TeamDTO();
-		if (entity.getId() != null) {
+		if(entity.getId() != null) {
 			result.setId(entity.getId());
 		}
 		result.setName(entity.getName());
-
-		result.setNameManager(entity.getNameManager());
+		
+		if(entity.getNameManager() != null &&!entity.getNameManager().equals("---chon---")) {
+			result.setNameManager(entity.getNameManager());
+		}
 		result.setNumber(entity.getNumber());
 		return result;
 	}
@@ -34,7 +36,9 @@ public class TeamConverter {
 			entity.setId(dto.getId());
 		}
 		entity.setName(dto.getName());
-		entity.setNumber(dto.getNumber());
+		if (dto.getCountNumber() != null) {
+			entity.setNumber(dto.getCountNumber().length);
+		}
 		return entity;
 	}
 }
