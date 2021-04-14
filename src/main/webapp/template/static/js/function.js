@@ -2,7 +2,6 @@
  * 
  */
 // Custom function.
-
 //Tab item
 
 let listItem = document.getElementsByClassName("navItem");
@@ -35,7 +34,7 @@ function openModalEvent() {
 		});
 	} else {
 		$('.navbars').css({
-			'width': '75%',
+			'width': '70%',
 			'transition': '.5s'
 		});
 	}
@@ -96,6 +95,7 @@ function changeViewEventEmployee(event) {
 	} else {
 		this.nameDefault = "Employee";
 		this.hideShow = false;
+		_getAllEmployee();
 	}
 }
 
@@ -105,6 +105,7 @@ function choseTeamEmployee(event) {
 		this.hideShow = true;
 	} else {
 		this.hideShow = false;
+		_getAllEmployee();
 	}
 }
 

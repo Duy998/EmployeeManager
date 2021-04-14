@@ -26,9 +26,9 @@
 		<tr>
 			<td><label>Role</label></td>
 			<td class="employee-detail__tab--detail--display"><select
-				ng-model="eachUser.idTeam">
-					<option ng-repeat="team in selectTeam" ng-value="{{team.id}}"
-						ng-bind="team.name"></option>
+				ng-model="eachUser.idRole">
+					<option ng-repeat="role in roles" ng-value="{{role.id}}"
+						ng-bind="role.name"></option>
 			</select></td>
 		</tr>
 		<tr>

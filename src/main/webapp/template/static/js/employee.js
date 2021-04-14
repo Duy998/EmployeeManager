@@ -151,21 +151,6 @@ angular.module('myApp').config(function($routeProvider) {
 		});
 	}
 
-	//Http GET user
-	/*function _refreshEmployeeData() {
-		$http({
-			method: 'GET',
-			url: '/EmployeeManager/api/user'
-		}).then(
-			function(res) {
-				$scope.employees = res.data;
-			},
-			function(res) {
-				console.log("Error: " + res.status + " : " + res.data);
-			}
-		);
-	}*/
-
 	//Http GET position
 	function _refreshPositionData() {
 		$http({

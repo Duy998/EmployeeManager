@@ -43,6 +43,9 @@ public class UserEntity extends BaseEntity {
 	@Column(name = "sex")
 	private Integer sex;
 
+	@Column(name = "image")
+	private String image;
+
 	// with PositionEntity
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "roleId")
@@ -129,6 +132,14 @@ public class UserEntity extends BaseEntity {
 
 	public void setSex(Integer sex) {
 		this.sex = sex;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
 	}
 
 	public RoleEntity getPosition() {

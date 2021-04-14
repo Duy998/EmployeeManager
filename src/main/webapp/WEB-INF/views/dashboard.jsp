@@ -46,6 +46,10 @@
 	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.js"></script>
 <script
 	src='<c:url value = "/template/static/libs/angular-material.min.js"/>'></script>
+<script
+	src='<c:url value = "template/static/libs/ckeditor/ckeditor.js"/>'></script>
+<script
+	src='<c:url value = "template/static/libs/angular-ckeditor-master/angular-ckeditor.js"/>'></script>
 </head>
 <body class="bg-secondary" ng-app="myApp" ng-controller="appCtrl"
 	ng-cloak>
@@ -112,6 +116,7 @@
 		src='<c:url value = "/template/static/libs/jquery-3.5.1.slim.min.js"/>'></script>
 	<script src='<c:url value = "/template/static/libs/bootstrap.min.js"/>'></script>
 	<script src='<c:url value = "/template/static/libs/popper.min.js"/>'></script>
+
 	<!-- JavaScript -->
 	<script src='<c:url value = "/template/static/js/dashboard.js"/>'></script>
 	<script src='<c:url value = "/template/static/js/employee.js"/>'></script>

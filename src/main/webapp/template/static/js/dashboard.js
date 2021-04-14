@@ -3,7 +3,7 @@
  */
 (function() {
 	'user strict';
-	angular.module('myApp', ['ngRoute', 'ngSanitize', 'ngMaterial', 'ui.bootstrap', 'angularUtils.directives.dirPagination']).config(function($routeProvider) {
+	angular.module('myApp', ['ngRoute', 'ngSanitize', 'ngMaterial', 'ui.bootstrap', 'angularUtils.directives.dirPagination', 'ckeditor']).config(function($routeProvider) {
 		$routeProvider.otherwise({
 			redirecTo: "/",
 			controller: "employeeCtrl"

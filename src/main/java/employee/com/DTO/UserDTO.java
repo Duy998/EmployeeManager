@@ -15,6 +15,7 @@ public class UserDTO extends AbstactDTO<UserDTO> {
 	private String roleName;
 	private String message;
 	private Integer sex;
+	private String image;
 	private String posiTion;
 	private String team;
 	private Long idTeam;
@@ -145,6 +146,14 @@ public class UserDTO extends AbstactDTO<UserDTO> {
 
 	public void setIdTeam(Long idTeam) {
 		this.idTeam = idTeam;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
 	}
 
 }

@@ -68,11 +68,27 @@ public class UserService implements IUserService {
 
 	@Override
 	public UserDTO findById(Long id) {
-		UserEntity entity = userRepository.findOne(id);
+		UserEntity userEntity = userRepository.findOne(id);
 		UserDTO dto = new UserDTO();
-		dto = userConverter.toDto(entity);
-		dto.setTeam(entity.getTeam().getName());
-		dto.setIdTeam(entity.getTeam().getId());
+		dto = userConverter.toDto(userEntity);
+		if (userEntity.getPosition() == null && userEntity.getTeam() == null) {
+			dto = userConverter.toDto(userEntity);
+		} else if (userEntity.getTeam() == null) {
+			dto = userConverter.toDto(userEntity);
+			dto.setIdRole(userEntity.getPosition().getId());
+			dto.setRoleName(userEntity.getPosition().getName());
+		} else if (userEntity.getPosition() == null) {
+			dto = userConverter.toDto(userEntity);
+			dto.setTeam(userEntity.getTeam().getName());
+			dto.setIdTeam(userEntity.getTeam().getId());
+		} else {
+			dto = userConverter.toDto(userEntity);
+			dto.setTeam(userEntity.getTeam().getName());
+			dto.setIdTeam(userEntity.getTeam().getId());
+			dto.setIdRole(userEntity.getPosition().getId());
+			dto.setRoleName(userEntity.getPosition().getName());
+		}
+		dto.setImage(userEntity.getImage());
 		return dto;
 	}
 
@@ -83,6 +99,7 @@ public class UserService implements IUserService {
 		RoleEntity position = positionRepository.findOne(dto.getIdRole());
 		userEntity.setPassword(getMD5(dto.getPassword()));
 		userEntity.setPosition(position);
+		userEntity.setImage("default.png");
 		userRepository.save(userEntity);
 	}
 
@@ -106,6 +123,7 @@ public class UserService implements IUserService {
 		userEntity.setProfile(dto.getProfile());
 		userEntity.setSex(dto.getSex());
 		userEntity.setStatus(dto.getStatus());
+		userEntity.setImage(dto.getImage());
 		RoleEntity positionEntity = positionRepository.findOne(dto.getIdRole());
 		userEntity.setPosition(positionEntity);
 		TeamEntity teamEntity = teamRepository.findOne(dto.getIdTeam());

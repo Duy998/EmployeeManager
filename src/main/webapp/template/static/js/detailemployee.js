@@ -1,9 +1,40 @@
-angular.module('myApp').controller('detailEmployeeCtrl', function($scope, $http, $mdDialog) {
-
+angular.module('myApp').config(function($routeProvider) {
+	$routeProvider.when('/', {
+		templateUrl: 'file/employee/defaultemployee.html',
+		controller: 'employeeCtrl'
+	});
+}).directive('customFileInput', [function() {
+	return {
+		link: function($scope, element, attrs) {
+			element.on('change', function(evt) {
+				var files = evt.target.files;
+				$scope.eachUser.image = files[0].name;
+				console.log($scope.eachUser.image);
+			});
+		}
+	}
+}]).controller('detailEmployeeCtrl', function($scope, $http, $mdDialog) {
+	$scope.options = {
+		language: 'en',
+		allowedContent: true,
+		entities: false
+	};
 	// Get data User
 	$scope.detailUser = JSON.parse(sessionStorage.detailuser);
 
-	_loadTeamData();
+	function _loadRoleData() {
+		$http({
+			method: 'GET',
+			url: '/EmployeeManager/api/position'
+		}).then(
+			function(res) {
+				$scope.roles = res.data;
+			},
+			function(res) {
+				console.log("Error: " + res.status + " : " + res.data);
+			}
+		);
+	}
 
 	function _loadTeamData() {
 		$http({
@@ -19,6 +50,9 @@ angular.module('myApp').controller('detailEmployeeCtrl', function($scope, $http,
 		});
 	}
 
+	_loadTeamData();
+	_loadRoleData();
+
 	$scope.eachUser = {
 		id: $scope.detailUser.id,
 		name: $scope.detailUser.name,
@@ -29,10 +63,11 @@ angular.module('myApp').controller('detailEmployeeCtrl', function($scope, $http,
 		status: $scope.detailUser.status,
 		email: $scope.detailUser.email,
 		message: $scope.detailUser.message,
-		nameRole: $scope.detailUser.nameRole,
+		nameRole: $scope.detailUser.roleName,
 		sex: $scope.detailUser.sex,
 		idRole: $scope.detailUser.idRole,
-		idTeam: $scope.detailUser.idTeam
+		idTeam: $scope.detailUser.idTeam,
+		image: $scope.detailUser.image
 	}
 
 	$scope.displaySex = [
@@ -57,18 +92,27 @@ angular.module('myApp').controller('detailEmployeeCtrl', function($scope, $http,
 
 	// edit User
 	$scope.editUser = function(eachUser) {
-		$http({
-			method: 'PUT',
-			url: '/EmployeeManager/api/user/' + eachUser.id,
-			data: angular.toJson(eachUser),
-			headers: {
-				'Content-Type': 'application/json'
-			}
-		})
+		console.log(eachUser);
+		if (eachUser.idRole == null || eachUser.idTeam == null) {
+			alert("Form can't blank");
+		} else {
+			$http({
+				method: 'PUT',
+				url: '/EmployeeManager/api/user/' + eachUser.id,
+				data: angular.toJson(eachUser),
+				headers: {
+					'Content-Type': 'application/json'
+				}
+			}).then(function(response) {
+				console.log(response);
+			}, function(response) {
+				console.log(response);
+			});
+		}
 	};
 	$scope.backEmployee = function() {
 		sessionStorage.clear();
-		location.href = "http://localhost:8080/EmployeeManager/home";
+		$scope.viewEmployee = "file/employee/listemployee.html";
 	};
 
 	// Click select row
